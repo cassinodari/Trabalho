@@ -2,8 +2,11 @@ package br.edu.com.uricer.view;
 
 import br.edu.com.uricer.dao.CidadeDAO;
 import br.edu.com.uricer.dao.CidadeDAOImpl;
+import br.edu.com.uricer.dao.PessoaDAO;
 import br.edu.com.uricer.model.Cidade;
+import br.edu.com.uricer.model.Pessoa;
 import br.edu.com.uricer.model.Uf;
+import br.edu.com.uricer.util.DataBase;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +24,14 @@ public class TelaCidades extends javax.swing.JFrame {
     
     
     CidadeDAOImpl cidadeDAO = new CidadeDAOImpl();
-
+    
+    
     /**
      * Creates new form Cidades
      */
     public TelaCidades() {
         initComponents();
+        carregaCidades();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,18 +48,6 @@ public class TelaCidades extends javax.swing.JFrame {
         tf_descricao = new javax.swing.JTextField();
         lb_uf = new javax.swing.JLabel();
         cb_uf = new javax.swing.JComboBox<>();
-
-        DefaultComboBoxModel dcm = new DefaultComboBoxModel();
-
-        List<Uf> ufsList =  new ArrayList<Uf>();
-        ufsList = cidadeDAO.getUFS();
-        int count = ufsList.size();
-        for( int i =0; i<count ; i++ )
-        {
-            dcm.addElement( ufsList.get( i ).getUf());
-        }
-
-        cb_uf.setModel(dcm);
         bt_cancelar = new javax.swing.JButton();
         bt_gravar = new javax.swing.JButton();
         bt_excluir = new javax.swing.JButton();
@@ -65,22 +58,11 @@ public class TelaCidades extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jp_cidades = new javax.swing.JScrollPane();
         tb_cidades = new javax.swing.JTable();
-        DefaultTableModel modelo = new DefaultTableModel();
-
-        modelo.addColumn("ID");
-        modelo.addColumn("Descrição");
-        modelo.addColumn("UF");
-
-        List<Cidade> cidades =  new ArrayList<Cidade>();
-        cidades = cidadeDAO.getCidades();
-        int count_cid = cidades.size();
-        for( int i =0; i<count_cid ; i++ )
-        {
-            modelo.addRow(new Object[]{cidades.get(i).getId(), cidades.get(i).getDescricao(), cidades.get(i).getUf().getUf()});
-        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cidades");
+        setPreferredSize(new java.awt.Dimension(890, 541));
+        setResizable(false);
 
         tf_id.setEnabled(false);
         tf_id.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +83,17 @@ public class TelaCidades extends javax.swing.JFrame {
 
         lb_uf.setText("UF:");
 
+        DefaultComboBoxModel dcm = new DefaultComboBoxModel();
+
+        List<Uf> ufsList =  new ArrayList<Uf>();
+        ufsList = cidadeDAO.getUFS();
+        int count = ufsList.size();
+        for( int i =0; i<count ; i++ )
+        {
+            dcm.addElement( ufsList.get( i ).getUf());
+        }
+
+        cb_uf.setModel(dcm);
         cb_uf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_ufActionPerformed(evt);
@@ -150,8 +143,23 @@ public class TelaCidades extends javax.swing.JFrame {
             }
         });
 
-        tb_cidades.setModel(modelo);
+        tb_cidades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Título 1", "Título 2", "Título 3", "Título 4"
+            }
+        ));
         tb_cidades.setRowHeight(30);
+        tb_cidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_cidadesMouseClicked(evt);
+            }
+        });
         jp_cidades.setViewportView(tb_cidades);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,7 +223,7 @@ public class TelaCidades extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_pesquisar)
                     .addComponent(tf_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jp_cidades, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -224,11 +232,22 @@ public class TelaCidades extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void carregaCidades() {
+        cidades = new ArrayList<Cidade>();
+        cidadeTableModel = new CidadeTableModel(cidades);
+        tb_cidades.setModel(cidadeTableModel);
+        cidades = cidadeDAO.getCidades();
+        cidadeTableModel.setCidades(cidades);
+        cidadeTableModel.fireTableDataChanged();
+    }
+    
+    
     private void bt_gravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_gravarActionPerformed
         Cidade cidade = new Cidade(null, tf_descricao.getText().toString(), cidadeDAO.getUFByUF(cb_uf.getSelectedItem().toString()));
        JOptionPane.showMessageDialog(this, "Gravado com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
         try {
             cidadeDAO.gravar(cidade);
+            carregaCidades();
         } catch (Exception ex) {
             Logger.getLogger(TelaCidades.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -238,7 +257,13 @@ public class TelaCidades extends javax.swing.JFrame {
 
         int resultado = JOptionPane.showConfirmDialog(this, "Confirma exclusão", "Confirmação", JOptionPane.YES_NO_CANCEL_OPTION);
         if(resultado == 0) {
-            //TelaCidades.delete(Cidade);
+            try {
+                //TelaCidades.delete(Cidade);
+                cidadeDAO.delete(cidade);
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaCidades.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            carregaCidades();
             limparEdits();
             bt_excluir.setEnabled(false);
             bt_cancelar.setEnabled(false);
@@ -276,17 +301,50 @@ public class TelaCidades extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_novoActionPerformed
 
     private void bt_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pesquisarActionPerformed
-    
+        try {
+            cidades = cidadeDAO.findByNome(tf_pesquisar.getText());
+            cidadeTableModel.setCidades(cidades);
+            cidadeTableModel.fireTableDataChanged();
+        } catch (Exception ex) {
+            Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bt_pesquisarActionPerformed
 
     private void cb_ufActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_ufActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_ufActionPerformed
 
+    private void tb_cidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_cidadesMouseClicked
+                                    
+        // TODO add your handling code here:
+        if(evt.getClickCount() == 2) {
+            cidade = cidades.get(tb_cidades.getSelectedRow());
+            cidadeParaEdit();
+            //painelPrincipal.setSelectedIndex(1);
+            tf_descricao.setEnabled(true);
+            bt_novo.setEnabled(false);
+            bt_gravar.setEnabled(true);
+            bt_cancelar.setEnabled(true);
+            bt_excluir.setEnabled(true);
+        }
+    }//GEN-LAST:event_tb_cidadesMouseClicked
+
     private void limparEdits() {
-        tf_id.setText("");
         tf_descricao.setText("");
     }    
+    
+    private void editParaCidade() {
+        if(tf_id.getText() != null && !tf_id.getText().isEmpty()) {
+            cidade.setId(Integer.parseInt(tf_id.getText()));
+        }
+        cidade.setDescricao(tf_descricao.getText());
+    }
+
+    private void cidadeParaEdit() {
+        tf_id.setText(cidade.getId().toString());
+        tf_descricao.setText(cidade.getDescricao());
+        //cb_uf.setModel(cidade.getUf());
+    }
     
     /**
      * @param args the command line arguments
@@ -324,9 +382,6 @@ public class TelaCidades extends javax.swing.JFrame {
         });       
        }
     
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancelar;
     private javax.swing.JButton bt_excluir;
@@ -345,5 +400,9 @@ public class TelaCidades extends javax.swing.JFrame {
     private javax.swing.JTextField tf_id;
     private javax.swing.JTextField tf_pesquisar;
     // End of variables declaration//GEN-END:variables
-
+    private Cidade cidade;
+    //private CidadeDAOImpl cidadeDAO;
+    private List<Cidade> cidades;
+    private CidadeTableModel cidadeTableModel;
+    
 }

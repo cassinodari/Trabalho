@@ -51,11 +51,19 @@ public class TestaDAO {
             List<Pessoa> pessoasAExcluir = pessoaDAO.findByNome("obama");
             System.out.println("Excluindo pessoa " + pessoasAExcluir.get(0));
             pessoaDAO.delete(pessoasAExcluir.get(0));
-            */
+            
             ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
             List<Cidade> cidades = new ArrayList<>();
             
             cidades = clienteDAO.getCidades();
+            for (Cidade cid : cidades) {
+                System.out.println(cid.getDescricao());
+            }*/
+            
+            CidadeDAOImpl cidadeDAO = new CidadeDAOImpl();
+            List<Cidade> cidades = new ArrayList<>();
+            
+            cidades = cidadeDAO.getCidades();
             for (Cidade cid : cidades) {
                 System.out.println(cid.getDescricao());
             }

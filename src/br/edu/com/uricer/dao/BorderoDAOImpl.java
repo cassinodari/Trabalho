@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @author Cassi
  */
-public class BorderoDAOImpl implements ClienteDAO {
+public class BorderoDAOImpl implements BorderoDAO{
     
     private Connection conn;
 
@@ -32,14 +32,14 @@ public class BorderoDAOImpl implements ClienteDAO {
     }
 
    
-    /* public Bordero gravar(Cliente cliente) throws Exception {
+     public Bordero gravar(Bordero bordero) throws Exception {
         // Abre uma conexao com o banco de dados
         java.sql.Connection conn = DataBase.getConnection();
         String sql = "";
-        if (cliente.getId() == null) {
-            sql = "INSERT INTO CLIENTES (DESCRICAO, EMAIL, CPF, TELEFONE, BAIRRO, ENDERECO, ID_CIDADE, PORCENTAGEM  ) VALUES ('" + cliente.getDescricao() + "', '" + cliente.getEmail() + "', '" + cliente.getCpf() + "', '" + cliente.getTelefone() + "', '" + cliente.getBairro() + "', '" + cliente.getEndereco() + "', '" + cliente.getId() + "', '" + cliente.getPorcentagem() + "';";
+        if (bordero.getId() == null) {
+            sql = "INSERT INTO CLIENTES (ID, ID_CLIENTE) VALUES ('" + bordero.getId() + "', EMAIL = '" + bordero.getId_cliente() + "';";
         } else {
-            sql = "UPDATE INTO CLIENTES SET DESCRICAO = '" + cliente.getDescricao() + "', EMAIL = '" + cliente.getEmail() + "', CPF = '" + cliente.getCpf() + "', TELEFONE = '" + cliente.getTelefone() + "', BAIRRO = '" + cliente.getBairro() + "', ENDERECO = '" + cliente.getEndereco() + "', ID = '" + cliente.getId() + "', PORCENTAGEM = '" + cliente.getPorcentagem() + "';";
+        //    sql = "UPDATE INTO CLIENTES SET ID_CLIENTE = '" + bordero.getId_cliente() + "', EMAIL = '" + bordero.getEmail() + "', CPF = '" + bordero.getCpf() + "', TELEFONE = '" + bordero.getTelefone() + "', BAIRRO = '" + bordero.getBairro() + "', ENDERECO = '" + bordero.getEndereco() + "', ID = '" + bordero.getId() + "', PORCENTAGEM = '" + bordero.getPorcentagem() + "';";
         }
         try (PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.execute();
@@ -47,11 +47,10 @@ public class BorderoDAOImpl implements ClienteDAO {
         } catch (Exception ex) {
             System.out.println("Erro ao tentar Adicionar/Atualizar: " + ex.getMessage());
         }
-        return cliente;
+        return bordero;
     }
     
-    
- 
+  
     public List<Cidade> getCidades() {
         // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
@@ -75,22 +74,23 @@ public class BorderoDAOImpl implements ClienteDAO {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return bordero;
+        return cidades;
     }
 
     
-    /* public Bordero getCidadeById(Integer id) {
+    @Override
+     public Cidade getCidadeById(Integer id) {
         // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
 
         String sql = "SELECT * FROM CIDADES WHERE ID = "+id+";";
-        Bordero bordero = new Bordero();
+        Cidade cidade = new Cidade();
         // Executa SQL
         try(PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             while(rs.next()) {
-                bordero.setId(rs.getInt("id"));
-                bordero.setDescricao(rs.getString("descricao"));
+                cidade.setId(rs.getInt("id"));
+                cidade.setDescricao(rs.getString("descricao"));
             }
             stm.close();
             this.conn.close();
@@ -100,20 +100,7 @@ public class BorderoDAOImpl implements ClienteDAO {
 
         return cidade;
     }
-*/
 
-    @Override
-    public Cliente gravar(Cliente cliente) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public List<Cidade> getCidades() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Cidade getCidadeById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }

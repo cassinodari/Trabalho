@@ -77,7 +77,7 @@ public interface CidadeDAO {
      */
     public Cidade findById (Integer id) throws Exception;
     
-    
+   // public Cidade findByNome(String descricao);
     
     /**
      * Busca a instancia de um objeto do banco de dados com base no campo descricao do objeto

@@ -1,6 +1,6 @@
 package br.edu.com.uricer.view;
 
-import br.edu.com.uricer.model.Pessoa;
+import br.edu.com.uricer.model.Cidade;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -8,21 +8,21 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Rodrigo Rosa <rodrigorosa@uricer.edu.br>
  */
-public class PessoaTableModel extends AbstractTableModel {
+public class CidadeTableModel extends AbstractTableModel {
 
-    private List<Pessoa> pessoas;
+    private List<Cidade> cidades;
     
-    public PessoaTableModel(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
+    public CidadeTableModel(List<Cidade> cidades) {
+        this.cidades = cidades;
     }
 
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
+    public void setCidades(List<Cidade> cidades) {
+        this.cidades = cidades;
     }
 
     @Override
     public int getRowCount() {
-        return pessoas.size();
+        return cidades.size();
     }
 
     @Override
@@ -32,24 +32,24 @@ public class PessoaTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Pessoa pessoa = pessoas.get(rowIndex);
+        Cidade cidade = cidades.get(rowIndex);
         switch (columnIndex) {
-            case 0: return pessoa.getId();
-            case 1: return pessoa.getNome();
+            case 0: return cidade.getId();
+            case 1: return cidade.getDescricao();
+            default:
+                throw new AssertionError();
+        }
+    }
+        
+    public String getColumnName(int column) {
+        switch (column) {
+            case 0: return "Id";
+            case 1: return "Nome";
             default:
                 throw new AssertionError();
         }
     }
 
-    @Override
-    public String getColumnName(int column) {
-        switch (column) {
-            case 0: return "Id";
-            case 1: return "Nome";
-            case 2: return "Cidade";
-            default:
-                throw new AssertionError();
-        }
-    }
+    
 
 }

@@ -8,23 +8,25 @@ import java.util.Objects;
  */
 public class Cliente  {
     Integer id;
-    private String descricao;
+    private String nome;
     private String email;
     private String cpf;
     private String telefone;
     private String bairro;
     private String endereco;       
-    Cidade id_cidade;
-    private float porcentagem;
+    private Cidade id_cidade;
+    private String cep;
+    private String porcentagem;
 
-    public Cliente(Integer id, String nome, String email, String cpf, String telefone, String bairro, String endereco, Cidade id_cidade, float porcentagem) {
+    public Cliente(Integer id, String nome, String email, String cpf, String telefone, String bairro, String endereco, Cidade id_cidade, String cep, String porcentagem) {
         this.id = id;
-        this.descricao = nome;
+        this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
         this.bairro = bairro;
         this.endereco = endereco;
+        this.cep = cep;
         this.id_cidade = id_cidade;
         this.porcentagem = porcentagem;
     } 
@@ -49,12 +51,12 @@ public class Cliente  {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -97,17 +99,25 @@ public class Cliente  {
         this.endereco = endereco;
     }
     
-    public float getPorcentagem() {
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+    
+    public String getPorcentagem() {
         return porcentagem;
     }
 
-    public void setPorcentagem(float porcentagem) {
+    public void setPorcentagem(String porcentagem) {
         this.porcentagem = porcentagem;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + descricao + ", email=" + email + ", cpf=" + cpf + ", telefone=" + telefone + ", bairro=" + bairro + ", endereco=" + endereco + ", id_cidade=" + id_cidade + '}';
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", telefone=" + telefone + ", bairro=" + bairro + ", endereco=" + endereco + ", id_cidade=" + id_cidade + '}';
     }
     
     public int hashCode() {

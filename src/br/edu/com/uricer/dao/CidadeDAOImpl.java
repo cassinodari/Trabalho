@@ -45,6 +45,20 @@ public class CidadeDAOImpl implements CidadeDAO {
         }
         return cidade;
     }
+    
+    public void delete(Cidade cidade) throws SQLException {
+        this.conn = DataBase.getConnection();
+        String sql = "delete from Cidades where id = ?";        
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, cidade.getId());
+            stm.executeUpdate();
+            
+            conn.commit();
+        } catch (Exception ex) {
+            System.out.println("Erro ao tentar excluir: " + ex.getMessage());
+            conn.rollback();
+        }
+    } 
 
     @Override
     public List<Cidade> getCidades() {
@@ -52,18 +66,18 @@ public class CidadeDAOImpl implements CidadeDAO {
         this.conn = DataBase.getConnection();
 
         String sql = "SELECT * FROM CIDADES;";
-        List<Cidade> cidades = new ArrayList<Cidade>();
-        
+        List<Cidade> cidades = new ArrayList<>();
+        Cidade cid = null;
         // Executa SQL
         try(PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             
             // Percorre os estados
             while(rs.next()) {
-                Cidade cid = new Cidade();
+                cid = new Cidade();
                 cid.setId(rs.getInt("id"));
                 cid.setDescricao(rs.getString("descricao"));
-                cid.setUf(this.getUFById(rs.getInt("id_uf")));
+                //cid.setUf(this.getUFById(rs.getInt("id_uf")));
                 cidades.add(cid);
             }
             stm.close();
@@ -169,5 +183,31 @@ public class CidadeDAOImpl implements CidadeDAO {
         }
 
         return uf;
+    }
+
+    public List<Cidade> findByNome(String descricao) throws SQLException {
+        this.conn = DataBase.getConnection();
+        String sql = "Select * from Cidades c where upper(c.descricao) like ?";
+        List<Cidade> cidades = new ArrayList<>();
+        Cidade cidade = null;
+        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+            
+            stm.setString(1, "%" + descricao.toUpperCase() + "%");
+            stm.execute();
+            
+            try(ResultSet resultSet = stm.getResultSet()) {
+                while(resultSet.next()) {
+                    cidade = new Cidade();
+                    cidade.setId(resultSet.getInt("id"));
+                    cidade.setDescricao(resultSet.getString("descricao"));
+                    //cidade.setUf(this.getUFById(resultSet.getInt("id_uf")));
+                    cidades.add(cidade);
+                }
+            }
+            stm.close();
+            this.conn.close();
+        }
+        
+        return cidades;
     }
 }

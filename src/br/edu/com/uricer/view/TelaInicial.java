@@ -33,8 +33,6 @@ public class TelaInicial extends javax.swing.JFrame {
         barra_menus_supeiror = new javax.swing.JMenuBar();
         menu_cadastros = new javax.swing.JMenu();
         Cidades = new javax.swing.JMenuItem();
-        menu_bordero = new javax.swing.JMenu();
-        menu_sair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Borderô de Cheques");
@@ -55,6 +53,11 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         btn_sair.setText("Sair");
+        btn_sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_sairMousePressed(evt);
+            }
+        });
         btn_sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sairActionPerformed(evt);
@@ -67,19 +70,20 @@ public class TelaInicial extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btn_clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(btn_bordero, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_bordero, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_bordero, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 94, Short.MAX_VALUE))
         );
 
@@ -94,17 +98,6 @@ public class TelaInicial extends javax.swing.JFrame {
         menu_cadastros.add(Cidades);
 
         barra_menus_supeiror.add(menu_cadastros);
-
-        menu_bordero.setText("Bordero");
-        barra_menus_supeiror.add(menu_bordero);
-
-        menu_sair.setText("Sair");
-        menu_sair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_sairActionPerformed(evt);
-            }
-        });
-        barra_menus_supeiror.add(menu_sair);
 
         setJMenuBar(barra_menus_supeiror);
 
@@ -135,32 +128,27 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clientesActionPerformed
 
     private void btn_borderoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borderoActionPerformed
-        // TODO add your handling code here:
+        new TelaBorderos().setVisible(true); 
     }//GEN-LAST:event_btn_borderoActionPerformed
-
-    private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
-        // TODO add your handling code here:
-        btn_sair.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                System.exit(0);
-            }
-        });
-    }//GEN-LAST:event_btn_sairActionPerformed
 
     private void CidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CidadesActionPerformed
         new TelaCidades().setVisible(true);                                        
         // TODO add your handling code here:
     
     }//GEN-LAST:event_CidadesActionPerformed
+      
+    private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
+          
+    }//GEN-LAST:event_btn_sairActionPerformed
 
-    private void menu_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_sairActionPerformed
+    private void btn_sairMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_sairMousePressed
         // TODO add your handling code here:
-        menu_sair.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                System.exit(0);
-            }
+        btn_sair.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent arg) {  
+            System.exit(0);  //Assim ele encerra 
+            }  
         });
-    }//GEN-LAST:event_menu_sairActionPerformed
+    }//GEN-LAST:event_btn_sairMousePressed
 
     /**
      * @param args the command line arguments
@@ -211,8 +199,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton btn_clientes;
     private javax.swing.JButton btn_sair;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenu menu_bordero;
     private javax.swing.JMenu menu_cadastros;
-    private javax.swing.JMenu menu_sair;
     // End of variables declaration//GEN-END:variables
 }
