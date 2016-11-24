@@ -14,7 +14,7 @@ public class BorderoTableModel extends AbstractTableModel {
         this.borderos = borderos;
     }
 
-    public void setClientes(List<Bordero> borderos) {
+    public void setBorderos(List<Bordero> borderos) {
         this.borderos = borderos;
     }
 

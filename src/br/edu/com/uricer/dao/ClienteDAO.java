@@ -38,4 +38,7 @@ public interface ClienteDAO {
     
     public List<Cliente> findByNome(String nome);
     
+    
+    
+    
 }

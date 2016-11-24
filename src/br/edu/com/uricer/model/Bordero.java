@@ -9,6 +9,7 @@ import java.util.Objects;
 public class Bordero {
     private Integer id;
     private Cliente id_cliente;
+    
 
     public Bordero() {
         super();
@@ -18,7 +19,6 @@ public class Bordero {
         this.id = id;
         this.id_cliente = id_cliente;
     }
-
     
     public Integer getId() {
         return id;

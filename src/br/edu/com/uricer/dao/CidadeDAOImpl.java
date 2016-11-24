@@ -94,9 +94,25 @@ public class CidadeDAOImpl implements CidadeDAO {
         return null;
     }
 
-    @Override
-    public Cidade findById(Integer id) throws Exception {
-        return null;
+    
+   public Uf findById(Integer id, String descricao) throws SQLException {
+        this.conn = DataBase.getConnection();
+        String sql = "Select * from Uf p where p.id = ?";
+        Uf categoria = null;
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, id);
+            stm.execute();
+
+            try (ResultSet resultSet = stm.getResultSet()) {
+                while (resultSet.next()) {
+                    categoria = new Uf();
+                    categoria.setId(resultSet.getInt("id"));
+                    categoria.setDescricao(resultSet.getString("descricao"));
+                }
+            }
+        }
+
+        return categoria;
     }
 
     @Override
@@ -209,5 +225,10 @@ public class CidadeDAOImpl implements CidadeDAO {
         }
         
         return cidades;
+    }
+
+    @Override
+    public Cidade findById(Integer id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.com.uricer.view;
 
 import br.edu.com.uricer.dao.BorderoDAO;
@@ -12,6 +7,8 @@ import br.edu.com.uricer.dao.ClienteDAOImpl;
 import br.edu.com.uricer.model.Bordero;
 import br.edu.com.uricer.model.Cidade;
 import br.edu.com.uricer.model.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -26,12 +23,13 @@ public class TelaBorderos extends javax.swing.JFrame {
     BorderoDAOImpl borderoDAO = new BorderoDAOImpl();
     
     
+    
     /**
      * Creates new form TelaBorderos
      */
     public TelaBorderos() {
         initComponents();
-    //    inicializar();
+        carregaBordero();
     }
     /*private void inicializar() {
         try {
@@ -105,6 +103,8 @@ public class TelaBorderos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(910, 552));
+
         painelprincipal.setPreferredSize(new java.awt.Dimension(890, 541));
 
         lb_nome.setText("Nome:");
@@ -151,7 +151,7 @@ public class TelaBorderos extends javax.swing.JFrame {
                         .addComponent(ed_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(bt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pn_pesquisaLayout.setVerticalGroup(
             pn_pesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,20 +252,17 @@ public class TelaBorderos extends javax.swing.JFrame {
             .addGroup(painel_cadastrooLayout.createSequentialGroup()
                 .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                                .addComponent(ed_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(ed_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ed_donocheque, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                                .addComponent(lb_cpf)
-                                .addGap(69, 69, 69)
-                                .addComponent(lb_numerp)
-                                .addGap(43, 43, 43)
-                                .addComponent(lb_donocheque)))
+                            .addComponent(ed_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb_cpf))
+                        .addGap(18, 18, 18)
+                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ed_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb_numerp))
+                        .addGap(20, 20, 20)
+                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_donocheque)
+                            .addComponent(ed_donocheque, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ed_dataini, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,18 +275,13 @@ public class TelaBorderos extends javax.swing.JFrame {
                         .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(painel_cadastrooLayout.createSequentialGroup()
                                 .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(lb_banco, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(100, 100, 100))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_cadastrooLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(ed_banco_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))
+                                    .addComponent(ed_banco_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lb_banco, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ed_dias_bord, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ed_dias))
-                                .addGap(29, 29, 29)
+                                .addGap(39, 39, 39)
                                 .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(painel_cadastrooLayout.createSequentialGroup()
                                         .addComponent(lb_valor)
@@ -299,7 +291,7 @@ public class TelaBorderos extends javax.swing.JFrame {
                                         .addComponent(ed_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(ed_juro, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_cadastrooLayout.createSequentialGroup()
+                            .addGroup(painel_cadastrooLayout.createSequentialGroup()
                                 .addComponent(bt_novo1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(bt_gravar1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,14 +305,12 @@ public class TelaBorderos extends javax.swing.JFrame {
         painel_cadastrooLayout.setVerticalGroup(
             painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb_numerp)
-                            .addComponent(lb_dataini, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_donocheque)
-                            .addComponent(lb_datafin)))
+                .addContainerGap()
+                .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_numerp)
+                    .addComponent(lb_dataini, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_donocheque)
+                    .addComponent(lb_datafin)
                     .addComponent(lb_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -376,7 +366,7 @@ public class TelaBorderos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lb_porce, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,7 +392,7 @@ public class TelaBorderos extends javax.swing.JFrame {
         pn_cadastro.setLayout(pn_cadastroLayout);
         pn_cadastroLayout.setHorizontalGroup(
             pn_cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
         );
         pn_cadastroLayout.setVerticalGroup(
             pn_cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +407,7 @@ public class TelaBorderos extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,13 +418,15 @@ public class TelaBorderos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 27, Short.MAX_VALUE))
         );
 
         pack();
@@ -457,17 +449,7 @@ public class TelaBorderos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ed_nomeActionPerformed
 
-    private void bt_novo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novo1ActionPerformed
-        // TODO add your handling code here:
-        ed_cpf.grabFocus();
-        ed_cpf.setEnabled(true);
-        bt_novo1.setEnabled(false);
-        bt_gravar1.setEnabled(true);
-        bt_cancelar1.setEnabled(true);
-        bt_excluir1.setEnabled(false);
-    }//GEN-LAST:event_bt_novo1ActionPerformed
-
-     /* private void tb_cadasborderoMouseClicked(java.awt.event.MouseEvent evt) {                                         
+     private void tb_cadasborderoMouseClicked(java.awt.event.MouseEvent evt) {                                         
         if(evt.getClickCount() == 2) {
             //bordero = borderos.get(tb_cadas_bordero.getSelectedRow());
             clienteParaEdit();
@@ -484,24 +466,39 @@ public class TelaBorderos extends javax.swing.JFrame {
             ed_juro.setEnabled(true);
         }
     } 
-    */
+    
     
      private void clienteParaEdit() {
       //  ed_nome.setText(bordero.getId().toString());        
     }
      
+     public void carregaBordero() {
+        borderos = new ArrayList<Bordero>();
+        borderoTableModel = new BorderoTableModel(borderos);
+        tb_bordero.setModel(borderoTableModel);
+        borderos = borderoDAO.getBorderos();
+        borderoTableModel.setBorderos(borderos);
+        borderoTableModel.fireTableDataChanged();
+    }
     
-    private void bt_gravar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_gravar1ActionPerformed
-       // TODO add your handling code here:
-        Bordero borderos;
-       // borderos = new Bordero(ed_id.getText(), ed_numero.getText(), ed_donocheque.getText(), ed_dataini.getText(), ed_datafin.getText(), ed_banco_cli.getText(),ed_dias.getText(), ed_valor.getText(), ed_juro.getText(),  null, (float) 2.00);
+    private void bt_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pesquisarActionPerformed
+
         try {
-           // BorderoDAO.gravar(borderos);
-            JOptionPane.showMessageDialog(this, "Gravado com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
-       } catch (Exception ex) {
+            borderoDAO.gravar(bordero);
+            carregaBordero();
+        } catch (Exception ex) {
             Logger.getLogger(TelaCidades.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }//GEN-LAST:event_bt_gravar1ActionPerformed
+        }
+    }//GEN-LAST:event_bt_pesquisarActionPerformed
+
+    private void bt_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelar1ActionPerformed
+        // TODO add your handling code here:
+        limparEdits();
+        bt_novo1.setEnabled(true);
+        bt_gravar1.setEnabled(false);
+        bt_cancelar1.setEnabled(false);
+        bt_excluir1.setEnabled(false);
+    }//GEN-LAST:event_bt_cancelar1ActionPerformed
 
     private void bt_excluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluir1ActionPerformed
         // TODO add your handling code here:
@@ -514,25 +511,28 @@ public class TelaBorderos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_excluir1ActionPerformed
 
-    private void bt_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelar1ActionPerformed
-        // TODO add your handling code here:
-        limparEdits();
-        bt_novo1.setEnabled(true);
-        bt_gravar1.setEnabled(false);
-        bt_cancelar1.setEnabled(false);
-        bt_excluir1.setEnabled(false);
-    }//GEN-LAST:event_bt_cancelar1ActionPerformed
-
-    private void bt_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pesquisarActionPerformed
-        // TODO add your handling code here:
+    private void bt_gravar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_gravar1ActionPerformed
+ 
+        Bordero bordero;
+      //  bordero = new Bordero(ed_cpf.getText(), ed_numero.getText(),ed_dataini.getText(), ed_datafin.getText(), ed_banco.getText(), ed_dias.getText(),ed_juro.getText(),ed_valor.getText(),ed_p.getText(),ed_cpf.getText());
         try {
-            borderos = borderoDAO.findByNome(ed_nome.getText());
-            borderoTableModel.setClientes(borderos);
-            borderoTableModel.fireTableDataChanged();
+        //   borderoDAO.gravar(bordero);
+            carregaBordero();
+            JOptionPane.showMessageDialog(this, "Gravado com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaCidades.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_bt_pesquisarActionPerformed
+    }//GEN-LAST:event_bt_gravar1ActionPerformed
+
+    private void bt_novo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novo1ActionPerformed
+        // TODO add your handling code here:
+        ed_cpf.grabFocus();
+        ed_cpf.setEnabled(true);
+        bt_novo1.setEnabled(false);
+        bt_gravar1.setEnabled(true);
+        bt_cancelar1.setEnabled(true);
+        bt_excluir1.setEnabled(false);
+    }//GEN-LAST:event_bt_novo1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -616,6 +616,7 @@ public class TelaBorderos extends javax.swing.JFrame {
     private javax.swing.JTable tb_bordero;
     private javax.swing.JTable tb_cadas_bordero;
     // End of variables declaration//GEN-END:variables
-   // private Bordero bordero;
+    private Bordero bordero;
+    private List<Bordero> borderos;
     private BorderoTableModel borderoTableModel;
 }
