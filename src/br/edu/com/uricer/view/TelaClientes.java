@@ -110,15 +110,21 @@ public class TelaClientes extends javax.swing.JFrame {
         bt_gravar_cli = new javax.swing.JButton();
         bt_excluir_cli = new javax.swing.JButton();
         bt_cancelar_cli = new javax.swing.JButton();
-        cb_cidade = new javax.swing.JComboBox<>();
+        javax.swing.JComboBox<String> cb_cidade = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Clientes\n");
+        setTitle("Cadastro de Borderos");
         setPreferredSize(new java.awt.Dimension(890, 541));
 
         painelprincipal.setPreferredSize(new java.awt.Dimension(890, 541));
 
         lb_nome.setText("Nome:");
+
+        ed_nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ed_nomeActionPerformed(evt);
+            }
+        });
 
         bt_pesquisa.setIcon(new javax.swing.ImageIcon("C:\\Users\\cassi\\Desktop\\Sistema de Borderô de cheques\\Bordero\\images\\pesquisar.png")); // NOI18N
         bt_pesquisa.setText("Pesquisa");
@@ -256,6 +262,12 @@ public class TelaClientes extends javax.swing.JFrame {
         bt_cancelar_cli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_cancelar_cliActionPerformed(evt);
+            }
+        });
+
+        cb_cidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_cidadeActionPerformed(evt);
             }
         });
 
@@ -521,6 +533,14 @@ public class TelaClientes extends javax.swing.JFrame {
             bt_excluir_cli.setEnabled(true);
         }
     }//GEN-LAST:event_tb_clientesMouseClicked
+
+    private void cb_cidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_cidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_cidadeActionPerformed
+
+    private void ed_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ed_nomeActionPerformed
     
     
     private void clienteParaEdit() {
@@ -575,7 +595,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JButton bt_gravar_cli;
     private javax.swing.JButton bt_novo_cli;
     private javax.swing.JButton bt_pesquisa;
-    private javax.swing.JComboBox<String> cb_cidade;
     private javax.swing.JTextField ed_bairro;
     private javax.swing.JTextField ed_cep;
     private javax.swing.JTextField ed_cpf;
@@ -608,8 +627,7 @@ public class TelaClientes extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     //private ClienteDAOImpl clienteDAO;
-    //private CidadeDAOImpl cidadeDAO;
-    
+    //private CidadeDAOImpl cidadeDAO;    
     private Cliente cliente;
     //private CidadeDAOImpl cidadeDAO;
     private List<Cliente> clientes;

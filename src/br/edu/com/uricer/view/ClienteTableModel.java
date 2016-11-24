@@ -4,10 +4,6 @@ import br.edu.com.uricer.model.Cliente;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Rodrigo Rosa <rodrigorosa@uricer.edu.br>
- */
 public class ClienteTableModel extends AbstractTableModel {
 
     private List<Cliente> clientes;
@@ -53,7 +49,4 @@ public class ClienteTableModel extends AbstractTableModel {
                 throw new AssertionError();
         }
     }
-
-    
-
 }
