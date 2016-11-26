@@ -492,14 +492,34 @@ public class TelaClientes extends javax.swing.JFrame {
         } else {
             ide = Integer.parseInt(id);
         }
+        String porcentagem = ed_porc.getText();
+        float porc = (float) 0.0f;
+        if ("".equals(porcentagem)) {
+            porc = 0;
+        } else {
+            porc = Float.parseFloat(porcentagem);
+        }
         Cliente cliente;
-        cliente = new Cliente(ide, ed_nome_cli.getText(), ed_email.getText(), ed_cpf.getText(), ed_telef.getText(), ed_bairro.getText(), ed_ender.getText(), null, ed_cep.getText(), ed_porc.getText());
         try {
+            cliente = new Cliente(ide, ed_nome_cli.getText(), ed_email.getText(), ed_cpf.getText(), ed_telef.getText(), ed_bairro.getText(), ed_ender.getText(), cidadeDAO.getCidadeByNome(cb_cidade_cli.getSelectedItem().toString()), ed_cep.getText(), porc);
             clienteDAO.gravar(cliente);
+            limparEdits();
+            ed_nome_cli.setEnabled(false);
+            ed_cpf.setEnabled(false);
+            ed_cep.setEnabled(false);
+            ed_email.setEnabled(false);
+            ed_telef.setEnabled(false);
+            ed_ender.setEnabled(false);
+            ed_bairro.setEnabled(false);
+            ed_porc.setEnabled(false);
+            cb_cidade_cli.setEnabled(false);
             carregaTabela();
+            painelprincipal.setSelectedIndex(0);
             JOptionPane.showMessageDialog(this, "Gravado com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(TelaCidades.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bt_gravar_cliActionPerformed
 
@@ -510,6 +530,7 @@ public class TelaClientes extends javax.swing.JFrame {
             try {
                 //TelaCidades.delete(Cidade);
                 clienteDAO.delete(cliente);
+                painelprincipal.setSelectedIndex(0);
             } catch (Exception ex) {
                 Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -592,7 +613,6 @@ public class TelaClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ed_nomeActionPerformed
     
-    
     private void clienteParaEdit() {
         ed_id_cli.setText(cliente.getId().toString());
         ed_nome_cli.setText(cliente.getNome());
@@ -602,7 +622,9 @@ public class TelaClientes extends javax.swing.JFrame {
         ed_cep.setText(cliente.getCep());
         ed_bairro.setText(cliente.getBairro());
         ed_ender.setText(cliente.getEndereco());
-        ed_porc.setText(cliente.getPorcentagem());
+        ed_porc.setText(Float.toString(cliente.getPorcentagem()));
+        System.out.println(cliente.getId_cidade().getDescricao());
+        cb_cidade_cli.getModel().setSelectedItem(cliente.getId_cidade().getDescricao());
     }
     /**
      * @param args the command line arguments

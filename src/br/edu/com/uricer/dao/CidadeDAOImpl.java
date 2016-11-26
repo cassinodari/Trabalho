@@ -216,7 +216,7 @@ public class CidadeDAOImpl implements CidadeDAO {
                     cidade = new Cidade();
                     cidade.setId(resultSet.getInt("id"));
                     cidade.setDescricao(resultSet.getString("descricao"));
-                    //cidade.setUf(this.getUFById(resultSet.getInt("id_uf")));
+                    cidade.setUf(getUFById(resultSet.getInt("id_uf")));
                     cidades.add(cidade);
                 }
             }
@@ -225,6 +225,30 @@ public class CidadeDAOImpl implements CidadeDAO {
         }
         
         return cidades;
+    }
+    
+    
+    public Cidade getCidadeByNome(String descricao) throws SQLException {
+        this.conn = DataBase.getConnection();
+        String sql = "Select FIRST 1 * from Cidades c where upper(c.descricao) like ?";
+        Cidade cidade = null;
+        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, "%" + descricao.toUpperCase() + "%");
+            stm.execute();
+            
+            try(ResultSet resultSet = stm.getResultSet()) {
+                while(resultSet.next()) {
+                    cidade = new Cidade();
+                    cidade.setId(resultSet.getInt("id"));
+                    cidade.setDescricao(resultSet.getString("descricao"));
+                    cidade.setUf(getUFById(resultSet.getInt("id_uf")));
+                }
+            }
+            stm.close();
+            this.conn.close();
+        }
+        
+        return cidade;
     }
 
     @Override

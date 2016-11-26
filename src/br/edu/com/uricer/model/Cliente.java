@@ -16,9 +16,9 @@ public class Cliente  {
     private String endereco;       
     private Cidade id_cidade;
     private String cep;
-    private String porcentagem;
+    private float porcentagem;
 
-    public Cliente(Integer id, String nome, String email, String cpf, String telefone, String bairro, String endereco, Cidade id_cidade, String cep, String porcentagem) {
+    public Cliente(Integer id, String nome, String email, String cpf, String telefone, String bairro, String endereco, Cidade id_cidade, String cep, float porcentagem) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -107,11 +107,11 @@ public class Cliente  {
         this.cep = cep;
     }
     
-    public String getPorcentagem() {
+    public float getPorcentagem() {
         return porcentagem;
     }
 
-    public void setPorcentagem(String porcentagem) {
+    public void setPorcentagem(float porcentagem) {
         this.porcentagem = porcentagem;
     }
 

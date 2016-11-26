@@ -30,10 +30,16 @@ public class ClienteDAOImpl implements ClienteDAO {
         // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
         String sql = "";
-        if (cliente.getId() == 0) {
-            sql = "INSERT INTO CLIENTES (NOME, EMAIL, CPF, TELEFONE, CEP, BAIRRO, ENDERECO, ID_CIDADE, PORCENTAGEM  ) VALUES ('" + cliente.getNome() + "', '" + cliente.getEmail() + "', '" + cliente.getCpf() + "', '" + cliente.getTelefone() + "', '" + cliente.getCep() + "','" + cliente.getBairro() + "', '" + cliente.getEndereco() + "', NULL, " + cliente.getPorcentagem() + ");";
+        float porcentagem = 0;
+        if("".equals(cliente.getPorcentagem())){
+            porcentagem = 0;
         } else {
-            sql = "UPDATE CLIENTES SET NOME = '" + cliente.getNome() + "', EMAIL = '" + cliente.getEmail() + "', CPF = '" + cliente.getCpf() + "', TELEFONE = '" + cliente.getTelefone() + "', + CEP = '" + cliente.getCep() + "', BAIRRO = '" + cliente.getBairro() + "', ENDERECO = '" + cliente.getEndereco() + "', ID_CIDADE = NULL, PORCENTAGEM = " + cliente.getPorcentagem() + " WHERE ID = "+cliente.getId()+";";
+            porcentagem = cliente.getPorcentagem();
+        }
+        if (cliente.getId() == 0) {
+            sql = "INSERT INTO CLIENTES (NOME, EMAIL, CPF, TELEFONE, CEP, BAIRRO, ENDERECO, ID_CIDADE, PORCENTAGEM  ) VALUES ('" + cliente.getNome() + "', '" + cliente.getEmail() + "', '" + cliente.getCpf() + "', '" + cliente.getTelefone() + "', '" + cliente.getCep() + "','" + cliente.getBairro() + "', '" + cliente.getEndereco() + "', "+cliente.getId_cidade().getId()+", " + cliente.getPorcentagem() + ");";
+        } else {
+            sql = "UPDATE CLIENTES SET NOME = '" + cliente.getNome() + "', EMAIL = '" + cliente.getEmail() + "', CPF = '" + cliente.getCpf() + "', TELEFONE = '" + cliente.getTelefone() + "', CEP = '" + cliente.getCep() + "', BAIRRO = '" + cliente.getBairro() + "', ENDERECO = '" + cliente.getEndereco() + "', ID_CIDADE = "+cliente.getId_cidade().getId()+", PORCENTAGEM = " + cliente.getPorcentagem() + " WHERE ID = "+cliente.getId()+";";
         }
         System.out.println(sql);
         try (PreparedStatement stm = conn.prepareStatement(sql)) {
@@ -55,7 +61,7 @@ public class ClienteDAOImpl implements ClienteDAO {
             conn.commit();
         } catch (Exception ex) {
             System.out.println("Erro ao tentar excluir: " + ex.getMessage());
-            conn.rollback();
+            //conn.rollback();
         }
     }
     
@@ -132,7 +138,8 @@ public class ClienteDAOImpl implements ClienteDAO {
                 cli.setEndereco(rs.getString("endereco"));
                 cli.setEmail(rs.getString("email"));
                 cli.setCep(rs.getString("cep"));
-                cli.setPorcentagem(rs.getString("porcentagem"));
+                cli.setPorcentagem(rs.getFloat("porcentagem"));
+                cli.setId_cidade(getCidadeById(rs.getInt("id_cidade")));
                 clientes.add(cli);
             }
             stm.close();
@@ -166,7 +173,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                     cliente.setEndereco(resultSet.getString("endereco"));
                     cliente.setEmail(resultSet.getString("email"));
                     cliente.setCep(resultSet.getString("cep"));
-                    cliente.setPorcentagem(resultSet.getString("porcentagem"));
+                    cliente.setPorcentagem(resultSet.getFloat("porcentagem"));
                     clientes.add(cliente);
                 }
             }
