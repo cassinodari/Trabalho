@@ -37,12 +37,24 @@ public class TelaClientes extends javax.swing.JFrame {
     
     public void inicializar () {
         
-            clientes = clienteDAO.findByNome("");
-            for(Cliente c: clientes) {
-            //    cb_cidade_cli.addItem(c.getNome());
-            }
-    
-}
+        bt_novo_cli.setEnabled(true);
+        bt_gravar_cli.setEnabled(false);
+        bt_cancelar_cli.setEnabled(false);
+        bt_excluir_cli.setEnabled(false);
+        ed_nome_cli.setEnabled(false);
+        ed_cpf.setEnabled(false);
+        ed_cep.setEnabled(false);
+        ed_email.setEnabled(false);
+        ed_telef.setEnabled(false);
+        ed_ender.setEnabled(false);
+        ed_bairro.setEnabled(false);
+        ed_porc.setEnabled(false);
+        cb_cidade_cli.setEnabled(false);
+        cidade = cidadeDAO.getCidades();
+        for(Cidade c:cidade) {
+            cb_cidade_cli.addItem(c.getDescricao());
+        }    
+    }
     private void carregaTabela() {
         try {
             clientes = new ArrayList<Cliente>();
@@ -116,7 +128,7 @@ public class TelaClientes extends javax.swing.JFrame {
         bt_gravar_cli = new javax.swing.JButton();
         bt_excluir_cli = new javax.swing.JButton();
         bt_cancelar_cli = new javax.swing.JButton();
-        javax.swing.JComboBox<String> cb_cidade_cli = new javax.swing.JComboBox<>();
+        cb_cidade_cli = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Borderos");
@@ -270,12 +282,6 @@ public class TelaClientes extends javax.swing.JFrame {
             }
         });
 
-        cb_cidade_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_cidade_cliActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -292,21 +298,15 @@ public class TelaClientes extends javax.swing.JFrame {
                             .addComponent(lb_porce_cli))
                         .addGap(65, 65, 65)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ed_id_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(cb_cidade_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(bt_cancelar_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bt_novo_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bt_excluir_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bt_gravar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(19, 19, 19))
+                                .addComponent(ed_id_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ed_ender)
-                                    .addComponent(ed_bairro)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cb_cidade_cli, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ed_ender, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ed_bairro, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(ed_nome_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(ed_email))
@@ -314,7 +314,7 @@ public class TelaClientes extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lb_telef_cli)
                                             .addComponent(lb_cpf_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(ed_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -323,10 +323,19 @@ public class TelaClientes extends javax.swing.JFrame {
                                                 .addComponent(jLabel1)))
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ed_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                    .addComponent(ed_telef, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
-                                .addGap(171, 171, 171))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(ed_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                            .addComponent(ed_telef, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                                        .addGap(171, 171, 171))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(bt_cancelar_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(bt_novo_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(bt_excluir_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(bt_gravar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(19, 19, 19))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_nome_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,8 +372,8 @@ public class TelaClientes extends javax.swing.JFrame {
                             .addComponent(lb_cep_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cb_cidade_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_cid_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lb_cid_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_cidade_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -400,7 +409,7 @@ public class TelaClientes extends javax.swing.JFrame {
             pn_cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_cadastroLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 210, Short.MAX_VALUE))
         );
         pn_cadastroLayout.setVerticalGroup(
             pn_cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -465,12 +474,26 @@ public class TelaClientes extends javax.swing.JFrame {
         bt_gravar_cli.setEnabled(true);
         bt_cancelar_cli.setEnabled(true);
         bt_excluir_cli.setEnabled(false);
+        ed_cpf.setEnabled(true);
+        ed_cep.setEnabled(true);
+        ed_email.setEnabled(true);
+        ed_telef.setEnabled(true);
+        ed_ender.setEnabled(true);
+        ed_bairro.setEnabled(true);
+        ed_porc.setEnabled(true);
+        cb_cidade_cli.setEnabled(true);
     }//GEN-LAST:event_bt_novo_cliActionPerformed
 
     private void bt_gravar_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_gravar_cliActionPerformed
-        // TODO add your handling code here:
+        String id = ed_id_cli.getText();
+        int ide;
+        if ("".equals(id)) {
+            ide = 0;
+        } else {
+            ide = Integer.parseInt(id);
+        }
         Cliente cliente;
-        cliente = new Cliente(null, ed_nome_cli.getText(), ed_email.getText(), ed_cpf.getText(), ed_telef.getText(), ed_bairro.getText(), ed_ender.getText(), null, ed_cep.getText(), ed_porc.getText());
+        cliente = new Cliente(ide, ed_nome_cli.getText(), ed_email.getText(), ed_cpf.getText(), ed_telef.getText(), ed_bairro.getText(), ed_ender.getText(), null, ed_cep.getText(), ed_porc.getText());
         try {
             clienteDAO.gravar(cliente);
             carregaTabela();
@@ -492,8 +515,19 @@ public class TelaClientes extends javax.swing.JFrame {
             }
             carregaTabela();
             limparEdits();
-            bt_excluir_cli.setEnabled(false);
+            bt_novo_cli.setEnabled(true);
+            bt_gravar_cli.setEnabled(false);
             bt_cancelar_cli.setEnabled(false);
+            bt_excluir_cli.setEnabled(false);            
+            ed_nome_cli.setEnabled(false);
+            ed_cpf.setEnabled(false);
+            ed_cep.setEnabled(false);
+            ed_email.setEnabled(false);
+            ed_telef.setEnabled(false);
+            ed_ender.setEnabled(false);
+            ed_bairro.setEnabled(false);
+            ed_porc.setEnabled(false);
+            cb_cidade_cli.setEnabled(false);
             
         }
     }//GEN-LAST:event_bt_excluir_cliActionPerformed
@@ -506,6 +540,15 @@ public class TelaClientes extends javax.swing.JFrame {
         bt_gravar_cli.setEnabled(false);
         bt_cancelar_cli.setEnabled(false);
         bt_excluir_cli.setEnabled(false);
+        ed_nome_cli.setEnabled(false);
+        ed_cpf.setEnabled(false);
+        ed_cep.setEnabled(false);
+        ed_email.setEnabled(false);
+        ed_telef.setEnabled(false);
+        ed_ender.setEnabled(false);
+        ed_bairro.setEnabled(false);
+        ed_porc.setEnabled(false);
+        cb_cidade_cli.setEnabled(false);
     }//GEN-LAST:event_bt_cancelar_cliActionPerformed
 
     private void bt_pesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pesquisaActionPerformed
@@ -532,13 +575,18 @@ public class TelaClientes extends javax.swing.JFrame {
             bt_novo_cli.setEnabled(false);
             bt_gravar_cli.setEnabled(true);
             bt_cancelar_cli.setEnabled(true);
-            bt_excluir_cli.setEnabled(true);
+            bt_excluir_cli.setEnabled(true);            
+            ed_nome_cli.setEnabled(true);
+            ed_cpf.setEnabled(true);
+            ed_cep.setEnabled(true);
+            ed_email.setEnabled(true);
+            ed_telef.setEnabled(true);
+            ed_ender.setEnabled(true);
+            ed_bairro.setEnabled(true);
+            ed_porc.setEnabled(true);
+            cb_cidade_cli.setEnabled(true);
         }
     }//GEN-LAST:event_tb_clientesMouseClicked
-
-    private void cb_cidade_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_cidade_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_cidade_cliActionPerformed
 
     private void ed_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_nomeActionPerformed
         // TODO add your handling code here:
@@ -597,6 +645,7 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JButton bt_gravar_cli;
     private javax.swing.JButton bt_novo_cli;
     private javax.swing.JButton bt_pesquisa;
+    private javax.swing.JComboBox<String> cb_cidade_cli;
     private javax.swing.JTextField ed_bairro;
     private javax.swing.JTextField ed_cep;
     private javax.swing.JTextField ed_cpf;

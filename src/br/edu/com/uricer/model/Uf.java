@@ -27,6 +27,11 @@ public class Uf {
         this.id = id;
     }
 
+    public Uf(String uf) {
+        super();
+        this.uf = uf;
+    }
+
     public Integer getId() {
         return id;
     }

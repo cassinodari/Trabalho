@@ -27,7 +27,7 @@ public class CidadeTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -36,6 +36,7 @@ public class CidadeTableModel extends AbstractTableModel {
         switch (columnIndex) {
             case 0: return cidade.getId();
             case 1: return cidade.getDescricao();
+            case 2: return cidade.getUf().getUf();
             default:
                 throw new AssertionError();
         }
@@ -45,6 +46,7 @@ public class CidadeTableModel extends AbstractTableModel {
         switch (column) {
             case 0: return "Id";
             case 1: return "Nome";
+            case 2: return "UF";
             default:
                 throw new AssertionError();
         }

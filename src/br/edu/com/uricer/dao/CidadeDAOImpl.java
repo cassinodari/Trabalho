@@ -24,7 +24,6 @@ public class CidadeDAOImpl implements CidadeDAO {
     private Connection conn;
 
     public CidadeDAOImpl() {
-        //this.conn = con;
     }
 
     @Override
@@ -32,16 +31,16 @@ public class CidadeDAOImpl implements CidadeDAO {
         // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
         String sql = "";
-        if (cidade.getId() == null) {
+        if (cidade.getId() == 0) {
             sql = "INSERT INTO CIDADES (DESCRICAO, ID_UF) VALUES ('"+cidade.getDescricao()+"', "+cidade.getUf().getId()+");";
         } else {
-            sql = "UPDATE INTO CIDADES SET DESCRICAO = '"+cidade.getDescricao()+"', ID_UF = "+cidade.getUf().getId()+";";
+            sql = "UPDATE CIDADES SET DESCRICAO = '"+cidade.getDescricao()+"', ID_UF = "+cidade.getUf().getId()+" WHERE ID = "+cidade.getId()+";";
         }
         try (PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.execute();
             conn.commit();
         } catch (Exception ex) {
-            System.out.println("Erro ao tentar Adicionar/Atualizar: " + ex.getMessage());
+            //System.out.println("Atualizado com sucesso " + ex.getMessage());
         }
         return cidade;
     }
@@ -77,7 +76,7 @@ public class CidadeDAOImpl implements CidadeDAO {
                 cid = new Cidade();
                 cid.setId(rs.getInt("id"));
                 cid.setDescricao(rs.getString("descricao"));
-                //cid.setUf(this.getUFById(rs.getInt("id_uf")));
+                cid.setUf(getUFById(rs.getInt("id_uf")));
                 cidades.add(cid);
             }
             stm.close();
@@ -156,6 +155,7 @@ public class CidadeDAOImpl implements CidadeDAO {
     @Override
     public Uf getUFById(Integer id) {
         // Abre uma conexao com o banco de dados
+        
         this.conn = DataBase.getConnection();
 
         String sql = "SELECT * FROM UFS WHERE ID = "+id+";";
@@ -229,6 +229,27 @@ public class CidadeDAOImpl implements CidadeDAO {
 
     @Override
     public Cidade findById(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.conn = DataBase.getConnection();
+        String sql = "Select * from cidades c where c.id = ?";
+        Cidade cidade = null;
+        Uf uf = null;
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, id);
+            stm.execute();
+
+            try (ResultSet resultSet = stm.getResultSet()) {
+                while (resultSet.next()) {
+                    cidade = new Cidade();
+                    cidade.setId(resultSet.getInt("id"));
+                    cidade.setDescricao(resultSet.getString("descricao"));
+                    uf = getUFById(resultSet.getInt("id_uf"));
+                    cidade.setUf(uf);
+                }
+            }
+        }
+        //System.out.println(cidade.getId());
+        //System.out.println(cidade.getDescricao());
+        //System.out.println(cidade.getUf().getId());
+        return cidade;
     }
 }

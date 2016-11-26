@@ -177,7 +177,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="210" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -209,20 +209,13 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="ed_id_cli" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
-                                              <Component id="cb_cidade_cli" min="-2" pref="136" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="bt_cancelar_cli" max="32767" attributes="0"/>
-                                                  <Component id="bt_novo_cli" max="32767" attributes="0"/>
-                                                  <Component id="bt_excluir_cli" max="32767" attributes="0"/>
-                                                  <Component id="bt_gravar_cli" min="-2" pref="105" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                              <Component id="ed_id_cli" min="-2" pref="82" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="cb_cidade_cli" max="32767" attributes="0"/>
                                                   <Component id="ed_ender" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="ed_bairro" alignment="0" max="32767" attributes="0"/>
                                                   <Group type="102" alignment="0" attributes="0">
@@ -249,11 +242,24 @@
                                                   </Group>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="ed_cpf" pref="136" max="32767" attributes="0"/>
-                                                  <Component id="ed_telef" pref="136" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="ed_cpf" pref="136" max="32767" attributes="0"/>
+                                                          <Component id="ed_telef" pref="136" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="bt_cancelar_cli" max="32767" attributes="0"/>
+                                                          <Component id="bt_novo_cli" max="32767" attributes="0"/>
+                                                          <Component id="bt_excluir_cli" max="32767" attributes="0"/>
+                                                          <Component id="bt_gravar_cli" min="-2" pref="105" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
-                                              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -304,8 +310,8 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="cb_cidade_cli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                           <Component id="lb_cid_cli" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Component id="cb_cidade_cli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -485,13 +491,8 @@
                           <StringArray count="0"/>
                         </Property>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_cidade_cliActionPerformed"/>
-                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
-                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>

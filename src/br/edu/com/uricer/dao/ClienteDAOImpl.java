@@ -30,10 +30,10 @@ public class ClienteDAOImpl implements ClienteDAO {
         // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
         String sql = "";
-        if (cliente.getId() == null) {
+        if (cliente.getId() == 0) {
             sql = "INSERT INTO CLIENTES (NOME, EMAIL, CPF, TELEFONE, CEP, BAIRRO, ENDERECO, ID_CIDADE, PORCENTAGEM  ) VALUES ('" + cliente.getNome() + "', '" + cliente.getEmail() + "', '" + cliente.getCpf() + "', '" + cliente.getTelefone() + "', '" + cliente.getCep() + "','" + cliente.getBairro() + "', '" + cliente.getEndereco() + "', NULL, " + cliente.getPorcentagem() + ");";
         } else {
-            sql = "UPDATE INTO CLIENTES SET NOME = '" + cliente.getNome() + "', EMAIL = '" + cliente.getEmail() + "', CPF = '" + cliente.getCpf() + "', TELEFONE = '" + cliente.getTelefone() + "', + CEP = '" + cliente.getCep() + "', BAIRRO = '" + cliente.getBairro() + "', ENDERECO = '" + cliente.getEndereco() + "', ID_CIDADE = NULL, PORCENTAGEM = " + cliente.getPorcentagem() + ";";
+            sql = "UPDATE CLIENTES SET NOME = '" + cliente.getNome() + "', EMAIL = '" + cliente.getEmail() + "', CPF = '" + cliente.getCpf() + "', TELEFONE = '" + cliente.getTelefone() + "', + CEP = '" + cliente.getCep() + "', BAIRRO = '" + cliente.getBairro() + "', ENDERECO = '" + cliente.getEndereco() + "', ID_CIDADE = NULL, PORCENTAGEM = " + cliente.getPorcentagem() + " WHERE ID = "+cliente.getId()+";";
         }
         System.out.println(sql);
         try (PreparedStatement stm = conn.prepareStatement(sql)) {
@@ -162,6 +162,11 @@ public class ClienteDAOImpl implements ClienteDAO {
                     cliente.setNome(resultSet.getString("nome"));
                     cliente.setCpf(resultSet.getString("cpf"));
                     cliente.setTelefone(resultSet.getString("telefone"));
+                    cliente.setBairro(resultSet.getString("bairro"));
+                    cliente.setEndereco(resultSet.getString("endereco"));
+                    cliente.setEmail(resultSet.getString("email"));
+                    cliente.setCep(resultSet.getString("cep"));
+                    cliente.setPorcentagem(resultSet.getString("porcentagem"));
                     clientes.add(cliente);
                 }
             }
