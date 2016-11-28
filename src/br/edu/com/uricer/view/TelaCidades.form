@@ -177,9 +177,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tf_pesquisar">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_pesquisarActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lb_pesquisar">
           <Properties>
@@ -237,9 +234,6 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_ufActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -250,9 +244,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tf_descricao">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_descricaoActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lb_cidade">
           <Properties>
@@ -268,9 +259,6 @@
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_idActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

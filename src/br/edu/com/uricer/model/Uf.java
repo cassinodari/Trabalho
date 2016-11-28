@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Cassi
  */
 public class Uf {
-    
+
     private Integer id;
     private String descricao;
     private String uf;
@@ -84,5 +84,5 @@ public class Uf {
             return false;
         }
         return true;
-    }    
+    }
 }

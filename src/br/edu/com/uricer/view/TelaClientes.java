@@ -20,14 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class TelaClientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaClientes
-     */
     CidadeDAOImpl cidadeDAO = new CidadeDAOImpl();
     ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
-    
-    //
-    //ClienteDAOImpl clienteDAO = new ClienteDAOImpl2();
     
     public TelaClientes() {
         initComponents();
@@ -66,10 +60,6 @@ public class TelaClientes extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //pessoas = new ArrayList<>();
-        //pessoaTableModel = new PessoaTableModel(pessoas);
-        //tbPessoas.setModel(pessoaTableModel);
     }
     
     private void limparEdits() {
@@ -222,31 +212,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
         lb_porce_cli.setText("Porcentagem:");
 
-        ed_email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ed_emailActionPerformed(evt);
-            }
-        });
-
-        ed_bairro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ed_bairroActionPerformed(evt);
-            }
-        });
-
-        ed_porc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ed_porcActionPerformed(evt);
-            }
-        });
-
         lb_telef_cli.setText("Telefone:");
-
-        ed_telef.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ed_telefActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("%");
 
@@ -453,18 +419,6 @@ public class TelaClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ed_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ed_emailActionPerformed
-
-    private void ed_bairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_bairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ed_bairroActionPerformed
-
-    private void ed_telefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_telefActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ed_telefActionPerformed
-
     private void bt_novo_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novo_cliActionPerformed
         // TODO add your handling code here:
         limparEdits();
@@ -579,13 +533,8 @@ public class TelaClientes extends javax.swing.JFrame {
             clienteTableModel.fireTableDataChanged();
         } catch (Exception ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }        
     }//GEN-LAST:event_bt_pesquisaActionPerformed
-
-    private void ed_porcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_porcActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ed_porcActionPerformed
 
     private void tb_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_clientesMouseClicked
         if(evt.getClickCount() == 2) {
@@ -625,9 +574,7 @@ public class TelaClientes extends javax.swing.JFrame {
         ed_porc.setText(Float.toString(cliente.getPorcentagem()));
         cb_cidade_cli.getModel().setSelectedItem(cliente.getId_cidade().getDescricao());
     }
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -697,9 +644,7 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JPanel pn_pesquisa;
     private javax.swing.JTable tb_clientes;
     // End of variables declaration//GEN-END:variables
-
-    //private ClienteDAOImpl clienteDAO;
-    //private CidadeDAOImpl cidadeDAO;    
+  
     private Cliente cliente;
     //private CidadeDAOImpl cidadeDAO;
     private List<Cidade> cidade;

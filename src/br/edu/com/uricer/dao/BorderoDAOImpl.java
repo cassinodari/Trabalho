@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.com.uricer.dao;
 
 import br.edu.com.uricer.model.Bordero;
@@ -23,24 +18,23 @@ import java.util.logging.Logger;
  *
  * @author Cassi
  */
-public class BorderoDAOImpl implements BorderoDAO{
-    
+public class BorderoDAOImpl implements BorderoDAO {
+
     private Connection conn;
     private ClienteDAOImpl clienteDao = new ClienteDAOImpl();
 
     public BorderoDAOImpl() {
         //this.conn = con;
     }
-    
-     public Bordero gravar(Bordero bordero) throws Exception {
-         System.out.println("Chegou");
-        // Abre uma conexao com o banco de dados
+
+    public Bordero gravar(Bordero bordero) throws Exception {
+        System.out.println("Chegou");
         this.conn = DataBase.getConnection();
         String sql = "";
         if (bordero.getId() == 0) {
-            sql = "INSERT INTO BORDEROS (ID_CLIENTE, CPF, NUM_CHEQUE, DONO_CHEQUE, DT_INI, DT_FIN, BANCO, DIAS, VALOR, JUROS) VALUES (" + bordero.getId_cliente().getId() + ", '" + bordero.getCpf()+ "', "+bordero.getNum_cheque()+", '"+bordero.getDono_cheque()+"', '"+bordero.getData_ini()+"', '"+bordero.getData_fin()+"', '"+bordero.getBanco()+"', "+bordero.getDias()+", "+bordero.getValor()+", "+bordero.getJuros()+");";
+            sql = "INSERT INTO BORDEROS (ID_CLIENTE, CPF, NUM_CHEQUE, DONO_CHEQUE, DT_INI, DT_FIN, BANCO, DIAS, VALOR, JUROS) VALUES (" + bordero.getId_cliente().getId() + ", '" + bordero.getCpf() + "', " + bordero.getNum_cheque() + ", '" + bordero.getDono_cheque() + "', '" + bordero.getData_ini() + "', '" + bordero.getData_fin() + "', '" + bordero.getBanco() + "', " + bordero.getDias() + ", " + bordero.getValor() + ", " + bordero.getJuros() + ");";
         } else {
-            sql = "UPDATE BORDEROS SET ID_CLIENTE = " + bordero.getId_cliente().getId()+ ", CPF = '" + bordero.getCpf()+ "', NUM_CHEQUE = "+bordero.getNum_cheque()+", DONO_CHEQUE = '"+bordero.getDono_cheque()+"', DT_INI = '"+bordero.getData_ini()+"', DT_FIN = '"+bordero.getData_fin()+"', BANCO = '"+bordero.getBanco()+"', DIAS = "+bordero.getDias()+", VALOR = "+bordero.getValor()+", JUROS = "+bordero.getJuros()+" WHERE ID = "+bordero.getId()+";";
+            sql = "UPDATE BORDEROS SET ID_CLIENTE = " + bordero.getId_cliente().getId() + ", CPF = '" + bordero.getCpf() + "', NUM_CHEQUE = " + bordero.getNum_cheque() + ", DONO_CHEQUE = '" + bordero.getDono_cheque() + "', DT_INI = '" + bordero.getData_ini() + "', DT_FIN = '" + bordero.getData_fin() + "', BANCO = '" + bordero.getBanco() + "', DIAS = " + bordero.getDias() + ", VALOR = " + bordero.getValor() + ", JUROS = " + bordero.getJuros() + " WHERE ID = " + bordero.getId() + ";";
         }
         System.out.println(sql);
         try (PreparedStatement stm = conn.prepareStatement(sql)) {
@@ -51,18 +45,18 @@ public class BorderoDAOImpl implements BorderoDAO{
         }
         return bordero;
     }
-     
-     public List<Bordero> getBorderos(Cliente cliente) {
+
+    public List<Bordero> getBorderos(Cliente cliente) {
         // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
-        String sql = "SELECT * FROM BORDEROS WHERE ID_CLIENTE = "+cliente.getId()+";";
+        String sql = "SELECT * FROM BORDEROS WHERE ID_CLIENTE = " + cliente.getId() + ";";
         List<Bordero> borderos = new ArrayList<>();
         Bordero bord = null;
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             // Percorre os estados
-            while(rs.next()) {
+            while (rs.next()) {
                 bord = new Bordero();
                 bord.setId(rs.getInt("id"));
                 bord.setId_cliente(clienteDao.getClienteById(rs.getInt("id_cliente")));
@@ -84,20 +78,17 @@ public class BorderoDAOImpl implements BorderoDAO{
         }
         return borderos;
     }
-    
-  
+
     public List<Cidade> getCidades() {
-        // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
 
         String sql = "SELECT * FROM CIDADES;";
         List<Cidade> cidades = new ArrayList<Cidade>();
-        
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             // Percore os estados
-            while(rs.next()) {
+            while (rs.next()) {
                 Cidade cid = new Cidade();
                 cid.setId(rs.getInt("id"));
                 cid.setDescricao(rs.getString("descricao"));
@@ -108,52 +99,19 @@ public class BorderoDAOImpl implements BorderoDAO{
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return cidades;
     }
-    //***** Ajustar este método abaixo
-    /* public List<Cliente> findByNome(String nome) {
-        this.conn = DataBase.getConnection();
-        String sql = "Select * from Clientes c where upper(c.nome) like ?";
-        List<Cliente> clientes = new ArrayList<>();
-        Cliente cliente = null;
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
-            
-            stm.setString(1, "%" + nome.toUpperCase() + "%");
-            stm.execute();
-            
-            try(ResultSet resultSet = stm.getResultSet()) {
-                while(resultSet.next()) {
-                    cliente = new Cliente();
-                    cliente.setId(resultSet.getInt("id"));
-                    cliente.setNome(resultSet.getString("nome"));
-                    cliente.setCpf(resultSet.getString("cpf"));
-                    cliente.setTelefone(resultSet.getString("telefone"));
-                    clientes.add(cliente);
-                }
-            }
-            stm.close();
-            this.conn.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return clientes;
-    }
 
-    */
-    
     @Override
-     public Cidade getCidadeById(Integer id) {
-        // Abre uma conexao com o banco de dados
+    public Cidade getCidadeById(Integer id) {
         this.conn = DataBase.getConnection();
 
-        String sql = "SELECT * FROM CIDADES WHERE ID = "+id+";";
+        String sql = "SELECT * FROM CIDADES WHERE ID = " + id + ";";
         Cidade cidade = new Cidade();
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 cidade.setId(rs.getInt("id"));
                 cidade.setDescricao(rs.getString("descricao"));
             }
@@ -162,12 +120,6 @@ public class BorderoDAOImpl implements BorderoDAO{
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return cidade;
     }
-
-    
 }
-
-   
-

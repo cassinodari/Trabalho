@@ -6,14 +6,15 @@ import java.util.Objects;
  *
  * @author Cassi
  */
-public class Cliente  {
+public class Cliente {
+
     Integer id;
     private String nome;
     private String email;
     private String cpf;
     private String telefone;
     private String bairro;
-    private String endereco;       
+    private String endereco;
     private Cidade id_cidade;
     private String cep;
     private float porcentagem;
@@ -29,12 +30,12 @@ public class Cliente  {
         this.cep = cep;
         this.id_cidade = id_cidade;
         this.porcentagem = porcentagem;
-    } 
-    
+    }
+
     public Cliente() {
         super();
     }
-    
+
     public Cidade getId_cidade() {
         return id_cidade;
     }
@@ -98,7 +99,7 @@ public class Cliente  {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
+
     public String getCep() {
         return cep;
     }
@@ -106,7 +107,7 @@ public class Cliente  {
     public void setCep(String cep) {
         this.cep = cep;
     }
-    
+
     public float getPorcentagem() {
         return porcentagem;
     }
@@ -119,12 +120,12 @@ public class Cliente  {
     public String toString() {
         return "Cliente{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", telefone=" + telefone + ", bairro=" + bairro + ", endereco=" + endereco + ", id_cidade=" + id_cidade + '}';
     }
-    
+
     public int hashCode() {
         int hash = 5;
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -142,5 +143,5 @@ public class Cliente  {
         }
         return true;
     }
-    
+
 }

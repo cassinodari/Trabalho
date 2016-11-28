@@ -32,9 +32,9 @@ public class CidadeDAOImpl implements CidadeDAO {
         this.conn = DataBase.getConnection();
         String sql = "";
         if (cidade.getId() == 0) {
-            sql = "INSERT INTO CIDADES (DESCRICAO, ID_UF) VALUES ('"+cidade.getDescricao()+"', "+cidade.getUf().getId()+");";
+            sql = "INSERT INTO CIDADES (DESCRICAO, ID_UF) VALUES ('" + cidade.getDescricao() + "', " + cidade.getUf().getId() + ");";
         } else {
-            sql = "UPDATE CIDADES SET DESCRICAO = '"+cidade.getDescricao()+"', ID_UF = "+cidade.getUf().getId()+" WHERE ID = "+cidade.getId()+";";
+            sql = "UPDATE CIDADES SET DESCRICAO = '" + cidade.getDescricao() + "', ID_UF = " + cidade.getUf().getId() + " WHERE ID = " + cidade.getId() + ";";
         }
         try (PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.execute();
@@ -44,20 +44,20 @@ public class CidadeDAOImpl implements CidadeDAO {
         }
         return cidade;
     }
-    
+
     public void delete(Cidade cidade) throws SQLException {
         this.conn = DataBase.getConnection();
-        String sql = "delete from Cidades where id = ?";        
+        String sql = "delete from Cidades where id = ?";
         try (PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, cidade.getId());
             stm.executeUpdate();
-            
+
             conn.commit();
         } catch (Exception ex) {
             System.out.println("Erro ao tentar excluir: " + ex.getMessage());
             conn.rollback();
         }
-    } 
+    }
 
     @Override
     public List<Cidade> getCidades() {
@@ -68,11 +68,11 @@ public class CidadeDAOImpl implements CidadeDAO {
         List<Cidade> cidades = new ArrayList<>();
         Cidade cid = null;
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
-            
+
             // Percorre os estados
-            while(rs.next()) {
+            while (rs.next()) {
                 cid = new Cidade();
                 cid.setId(rs.getInt("id"));
                 cid.setDescricao(rs.getString("descricao"));
@@ -84,7 +84,6 @@ public class CidadeDAOImpl implements CidadeDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return cidades;
     }
 
@@ -93,8 +92,7 @@ public class CidadeDAOImpl implements CidadeDAO {
         return null;
     }
 
-    
-   public Uf findById(Integer id, String descricao) throws SQLException {
+    public Uf findById(Integer id, String descricao) throws SQLException {
         this.conn = DataBase.getConnection();
         String sql = "Select * from Uf p where p.id = ?";
         Uf categoria = null;
@@ -110,7 +108,6 @@ public class CidadeDAOImpl implements CidadeDAO {
                 }
             }
         }
-
         return categoria;
     }
 
@@ -121,22 +118,20 @@ public class CidadeDAOImpl implements CidadeDAO {
 
     @Override
     public void delete(Integer id) throws Exception {
-        
+
     }
 
     @Override
     public List<Uf> getUFS() {
-        // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
 
         String sql = "SELECT * FROM UFS;";
         List<Uf> ufs = new ArrayList<Uf>();
-        
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             // Percore os estados
-            while(rs.next()) {
+            while (rs.next()) {
                 Uf uf = new Uf();
                 uf.setId(rs.getInt("id"));
                 uf.setDescricao(rs.getString("descricao"));
@@ -148,22 +143,19 @@ public class CidadeDAOImpl implements CidadeDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return ufs;
     }
 
     @Override
     public Uf getUFById(Integer id) {
-        // Abre uma conexao com o banco de dados
-        
         this.conn = DataBase.getConnection();
 
-        String sql = "SELECT * FROM UFS WHERE ID = "+id+";";
+        String sql = "SELECT * FROM UFS WHERE ID = " + id + ";";
         Uf uf = new Uf();
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 uf.setId(rs.getInt("id"));
                 uf.setDescricao(rs.getString("descricao"));
                 uf.setUf(rs.getString("uf"));
@@ -173,21 +165,19 @@ public class CidadeDAOImpl implements CidadeDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return uf;
     }
 
     @Override
     public Uf getUFByUF(String UF) {
-        // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
 
-        String sql = "SELECT * FROM UFS WHERE UF = '"+UF+"';";
+        String sql = "SELECT * FROM UFS WHERE UF = '" + UF + "';";
         Uf uf = new Uf();
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 uf.setId(rs.getInt("id"));
                 uf.setDescricao(rs.getString("descricao"));
                 uf.setUf(rs.getString("uf"));
@@ -197,7 +187,6 @@ public class CidadeDAOImpl implements CidadeDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return uf;
     }
 
@@ -206,13 +195,13 @@ public class CidadeDAOImpl implements CidadeDAO {
         String sql = "Select * from Cidades c where upper(c.descricao) like ?";
         List<Cidade> cidades = new ArrayList<>();
         Cidade cidade = null;
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
-            
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+
             stm.setString(1, "%" + descricao.toUpperCase() + "%");
             stm.execute();
-            
-            try(ResultSet resultSet = stm.getResultSet()) {
-                while(resultSet.next()) {
+
+            try (ResultSet resultSet = stm.getResultSet()) {
+                while (resultSet.next()) {
                     cidade = new Cidade();
                     cidade.setId(resultSet.getInt("id"));
                     cidade.setDescricao(resultSet.getString("descricao"));
@@ -223,21 +212,19 @@ public class CidadeDAOImpl implements CidadeDAO {
             stm.close();
             this.conn.close();
         }
-        
         return cidades;
     }
-    
-    
+
     public Cidade getCidadeByNome(String descricao) throws SQLException {
         this.conn = DataBase.getConnection();
         String sql = "Select FIRST 1 * from Cidades c where upper(c.descricao) like ?";
         Cidade cidade = null;
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setString(1, "%" + descricao.toUpperCase() + "%");
             stm.execute();
-            
-            try(ResultSet resultSet = stm.getResultSet()) {
-                while(resultSet.next()) {
+
+            try (ResultSet resultSet = stm.getResultSet()) {
+                while (resultSet.next()) {
                     cidade = new Cidade();
                     cidade.setId(resultSet.getInt("id"));
                     cidade.setDescricao(resultSet.getString("descricao"));
@@ -247,7 +234,6 @@ public class CidadeDAOImpl implements CidadeDAO {
             stm.close();
             this.conn.close();
         }
-        
         return cidade;
     }
 
@@ -271,9 +257,6 @@ public class CidadeDAOImpl implements CidadeDAO {
                 }
             }
         }
-        //System.out.println(cidade.getId());
-        //System.out.println(cidade.getDescricao());
-        //System.out.println(cidade.getUf().getId());
         return cidade;
     }
 }

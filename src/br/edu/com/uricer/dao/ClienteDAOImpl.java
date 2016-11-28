@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author Cassi
  */
 public class ClienteDAOImpl implements ClienteDAO {
-    
+
     private Connection conn;
 
     public ClienteDAOImpl() {
@@ -31,41 +31,38 @@ public class ClienteDAOImpl implements ClienteDAO {
         this.conn = DataBase.getConnection();
         String sql = "";
         float porcentagem = 0;
-        if("".equals(cliente.getPorcentagem())){
+        if ("".equals(cliente.getPorcentagem())) {
             porcentagem = 0;
         } else {
             porcentagem = cliente.getPorcentagem();
         }
         if (cliente.getId() == 0) {
-            sql = "INSERT INTO CLIENTES (NOME, EMAIL, CPF, TELEFONE, CEP, BAIRRO, ENDERECO, ID_CIDADE, PORCENTAGEM  ) VALUES ('" + cliente.getNome() + "', '" + cliente.getEmail() + "', '" + cliente.getCpf() + "', '" + cliente.getTelefone() + "', '" + cliente.getCep() + "','" + cliente.getBairro() + "', '" + cliente.getEndereco() + "', "+cliente.getId_cidade().getId()+", " + cliente.getPorcentagem() + ");";
+            sql = "INSERT INTO CLIENTES (NOME, EMAIL, CPF, TELEFONE, CEP, BAIRRO, ENDERECO, ID_CIDADE, PORCENTAGEM  ) VALUES ('" + cliente.getNome() + "', '" + cliente.getEmail() + "', '" + cliente.getCpf() + "', '" + cliente.getTelefone() + "', '" + cliente.getCep() + "','" + cliente.getBairro() + "', '" + cliente.getEndereco() + "', " + cliente.getId_cidade().getId() + ", " + cliente.getPorcentagem() + ");";
         } else {
-            sql = "UPDATE CLIENTES SET NOME = '" + cliente.getNome() + "', EMAIL = '" + cliente.getEmail() + "', CPF = '" + cliente.getCpf() + "', TELEFONE = '" + cliente.getTelefone() + "', CEP = '" + cliente.getCep() + "', BAIRRO = '" + cliente.getBairro() + "', ENDERECO = '" + cliente.getEndereco() + "', ID_CIDADE = "+cliente.getId_cidade().getId()+", PORCENTAGEM = " + cliente.getPorcentagem() + " WHERE ID = "+cliente.getId()+";";
+            sql = "UPDATE CLIENTES SET NOME = '" + cliente.getNome() + "', EMAIL = '" + cliente.getEmail() + "', CPF = '" + cliente.getCpf() + "', TELEFONE = '" + cliente.getTelefone() + "', CEP = '" + cliente.getCep() + "', BAIRRO = '" + cliente.getBairro() + "', ENDERECO = '" + cliente.getEndereco() + "', ID_CIDADE = " + cliente.getId_cidade().getId() + ", PORCENTAGEM = " + cliente.getPorcentagem() + " WHERE ID = " + cliente.getId() + ";";
         }
         System.out.println(sql);
         try (PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.execute();
-            //    conn.commit();
         } catch (Exception ex) {
             System.out.println("Erro ao tentar Adicionar/Atualizar: " + ex.getMessage());
         }
         return cliente;
     }
-    
+
     public void delete(Cliente cliente) throws SQLException {
         this.conn = DataBase.getConnection();
-        String sql = "delete from Clientes where id = ?";        
+        String sql = "delete from Clientes where id = ?";
         try (PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, cliente.getId());
             stm.executeUpdate();
-            
+
             conn.commit();
         } catch (Exception ex) {
             System.out.println("Erro ao tentar excluir: " + ex.getMessage());
-            //conn.rollback();
         }
     }
-    
-    
+
     @Override
     public List<Cidade> getCidades() {
         // Abre uma conexao com o banco de dados
@@ -73,12 +70,12 @@ public class ClienteDAOImpl implements ClienteDAO {
 
         String sql = "SELECT * FROM CIDADES;";
         List<Cidade> cidades = new ArrayList<Cidade>();
-        
+
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             // Percore os estados
-            while(rs.next()) {
+            while (rs.next()) {
                 Cidade cid = new Cidade();
                 cid.setId(rs.getInt("id"));
                 cid.setDescricao(rs.getString("descricao"));
@@ -89,7 +86,6 @@ public class ClienteDAOImpl implements ClienteDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return cidades;
     }
 
@@ -98,12 +94,12 @@ public class ClienteDAOImpl implements ClienteDAO {
         // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
 
-        String sql = "SELECT * FROM CIDADES WHERE ID = "+id+";";
+        String sql = "SELECT * FROM CIDADES WHERE ID = " + id + ";";
         Cidade cidade = new Cidade();
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 cidade.setId(rs.getInt("id"));
                 cidade.setDescricao(rs.getString("descricao"));
             }
@@ -112,20 +108,18 @@ public class ClienteDAOImpl implements ClienteDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return cidade;
     }
 
     public Cliente getClienteById(Integer id) {
-        // Abre uma conexao com o banco de dados
         this.conn = DataBase.getConnection();
 
-        String sql = "SELECT * FROM CLIENTES WHERE ID = "+id+";";
+        String sql = "SELECT * FROM CLIENTES WHERE ID = " + id + ";";
         Cliente cliente = new Cliente();
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 cliente.setId(rs.getInt("id"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEmail(rs.getString("email"));
@@ -142,11 +136,9 @@ public class ClienteDAOImpl implements ClienteDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return cliente;
     }
-    
-    
+
     @Override
     public List<Cliente> getClientes() {
         // Abre uma conexao com o banco de dados
@@ -156,10 +148,10 @@ public class ClienteDAOImpl implements ClienteDAO {
         List<Cliente> clientes = new ArrayList<>();
         Cliente cli = null;
         // Executa SQL
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             // Percore os estados
-            while(rs.next()) {
+            while (rs.next()) {
                 cli = new Cliente();
                 cli.setId(rs.getInt("id"));
                 cli.setNome(rs.getString("nome"));
@@ -178,7 +170,6 @@ public class ClienteDAOImpl implements ClienteDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return clientes;
     }
 
@@ -188,13 +179,13 @@ public class ClienteDAOImpl implements ClienteDAO {
         String sql = "Select * from Clientes c where upper(c.nome) like ?";
         List<Cliente> clientes = new ArrayList<>();
         Cliente cliente = null;
-        try(PreparedStatement stm = conn.prepareStatement(sql)) {
-            
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+
             stm.setString(1, "%" + nome.toUpperCase() + "%");
             stm.execute();
-            
-            try(ResultSet resultSet = stm.getResultSet()) {
-                while(resultSet.next()) {
+
+            try (ResultSet resultSet = stm.getResultSet()) {
+                while (resultSet.next()) {
                     cliente = new Cliente();
                     cliente.setId(resultSet.getInt("id"));
                     cliente.setNome(resultSet.getString("nome"));
@@ -213,7 +204,6 @@ public class ClienteDAOImpl implements ClienteDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return clientes;
     }
 }

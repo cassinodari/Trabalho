@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class DataBase {
 
-    public static Connection getConnection() {         
+    public static Connection getConnection() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection("jdbc:firebirdsql:localhost/3050:C:/BD/BD_BORDERO.FDB", "SYSDBA", "masterkey");
@@ -20,5 +20,5 @@ public class DataBase {
             Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return conn;
-    } 
+    }
 }

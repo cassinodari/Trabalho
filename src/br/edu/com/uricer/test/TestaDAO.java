@@ -59,10 +59,10 @@ public class TestaDAO {
             for (Cidade cid : cidades) {
                 System.out.println(cid.getDescricao());
             }*/
-            
+
             CidadeDAOImpl cidadeDAO = new CidadeDAOImpl();
             List<Cidade> cidades = new ArrayList<>();
-            
+
             cidades = cidadeDAO.getCidades();
             for (Cidade cid : cidades) {
                 System.out.println(cid.getDescricao());

@@ -24,9 +24,6 @@ public class TelaCidades extends javax.swing.JFrame {
     
     CidadeDAOImpl cidadeDAO = new CidadeDAOImpl();
    
-    /**
-     * Creates new form Cidades
-     */
     public TelaCidades() {
         initComponents();
         carregaCidades();
@@ -92,12 +89,6 @@ public class TelaCidades extends javax.swing.JFrame {
             }
         });
 
-        tf_pesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_pesquisarActionPerformed(evt);
-            }
-        });
-
         lb_pesquisar.setText("Pesquisar:");
 
         bt_novo.setIcon(new javax.swing.ImageIcon("C:\\Users\\cassi\\Desktop\\Sistema de Borderô de cheques\\Bordero\\images\\novo.png")); // NOI18N
@@ -133,30 +124,13 @@ public class TelaCidades extends javax.swing.JFrame {
             }
         });
 
-        cb_uf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_ufActionPerformed(evt);
-            }
-        });
-
         lb_uf.setText("UF:");
-
-        tf_descricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_descricaoActionPerformed(evt);
-            }
-        });
 
         lb_cidade.setText("Cidade:");
 
         lb_id.setText("ID: ");
 
         tf_id.setEnabled(false);
-        tf_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_idActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -268,8 +242,7 @@ public class TelaCidades extends javax.swing.JFrame {
             cb_uf.addItem(u.getUf());
         }
     }
-    
-    
+       
     private void bt_gravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_gravarActionPerformed
         String id = tf_id.getText();
         int ide;
@@ -305,10 +278,6 @@ public class TelaCidades extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_excluirActionPerformed
 
-    private void tf_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_idActionPerformed
-
     private void bt_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelarActionPerformed
         // TODO add your handling code here:
         limparEdits();
@@ -319,11 +288,6 @@ public class TelaCidades extends javax.swing.JFrame {
         cb_uf.setEnabled(false);
         tf_descricao.setEnabled(false);
     }//GEN-LAST:event_bt_cancelarActionPerformed
-
-    private void tf_descricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_descricaoActionPerformed
-        // TODO add your handling code here:    
-        
-    }//GEN-LAST:event_tf_descricaoActionPerformed
 
     private void bt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novoActionPerformed
         // TODO add your handling code here:
@@ -348,10 +312,6 @@ public class TelaCidades extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_pesquisarActionPerformed
 
-    private void cb_ufActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_ufActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_ufActionPerformed
-
     private void tb_cidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_cidadesMouseClicked
                                     
         // TODO add your handling code here:
@@ -373,10 +333,6 @@ public class TelaCidades extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tb_cidadesMouseClicked
 
-    private void tf_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_pesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_pesquisarActionPerformed
-
     private void limparEdits() {
         tf_descricao.setText("");
     }    
@@ -395,9 +351,6 @@ public class TelaCidades extends javax.swing.JFrame {
         cb_uf.getModel().setSelectedItem(cidade.getUf().getUf());
     }
     
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -421,14 +374,7 @@ public class TelaCidades extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaCidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

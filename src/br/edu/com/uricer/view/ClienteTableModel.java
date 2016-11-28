@@ -4,10 +4,14 @@ import br.edu.com.uricer.model.Cliente;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
+/**
+ *
+ * @author Cassi
+ */
 public class ClienteTableModel extends AbstractTableModel {
 
     private List<Cliente> clientes;
-    
+
     public ClienteTableModel(List<Cliente> clientes) {
         this.clientes = clientes;
     }
@@ -30,21 +34,29 @@ public class ClienteTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Cliente cliente = clientes.get(rowIndex);
         switch (columnIndex) {
-            case 0: return cliente.getId();
-            case 1: return cliente.getNome();
-            case 2: return cliente.getCpf();
-            case 3: return cliente.getTelefone();
+            case 0:
+                return cliente.getId();
+            case 1:
+                return cliente.getNome();
+            case 2:
+                return cliente.getCpf();
+            case 3:
+                return cliente.getTelefone();
             default:
                 throw new AssertionError();
         }
     }
-        
+
     public String getColumnName(int column) {
         switch (column) {
-            case 0: return "Id";
-            case 1: return "Nome";
-            case 2: return "CPF";
-            case 3: return "Telefone";
+            case 0:
+                return "Id";
+            case 1:
+                return "Nome";
+            case 2:
+                return "CPF";
+            case 3:
+                return "Telefone";
             default:
                 throw new AssertionError();
         }

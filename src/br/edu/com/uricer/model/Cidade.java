@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Cassi
  */
 public class Cidade {
-       
+
     Integer id;
     private String descricao;
     Uf id_uf;

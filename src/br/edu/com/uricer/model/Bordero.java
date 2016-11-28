@@ -8,6 +8,7 @@ import java.util.Objects;
  * @author Cassi
  */
 public class Bordero {
+
     private Integer id;
     private Cliente id_cliente;
     private String cpf;
@@ -37,7 +38,7 @@ public class Bordero {
         this.valor = valor;
         this.juros = juros;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -45,7 +46,7 @@ public class Bordero {
     public void setId(Integer id) {
         this.id = id;
     }
-   
+
     public Cliente getId_cliente() {
         return id_cliente;
     }
@@ -53,7 +54,7 @@ public class Bordero {
     public void setId_cliente(Cliente id_cliente) {
         this.id_cliente = id_cliente;
     }
-    
+
     public String getCpf() {
         return cpf;
     }
@@ -125,12 +126,12 @@ public class Bordero {
     public void setJuros(float juros) {
         this.juros = juros;
     }
-    
-    
+
     @Override
     public String toString() {
         return "Bordero{" + "id=" + id + ", id_cliente=" + id_cliente + '}';
     }
+
     @Override
     public int hashCode() {
         int hash = 5;

@@ -408,23 +408,14 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="ed_email">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ed_emailActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="ed_cep">
                     </Component>
                     <Component class="javax.swing.JTextField" name="ed_bairro">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ed_bairroActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="ed_ender">
                     </Component>
                     <Component class="javax.swing.JTextField" name="ed_porc">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ed_porcActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lb_telef_cli">
                       <Properties>
@@ -432,9 +423,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="ed_telef">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ed_telefActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>

@@ -7,6 +7,7 @@ import java.sql.Date;
  * @author Cassi
  */
 public class Cheque {
+
     private int id;
     private String cpf;
     private int num_cheque;
@@ -110,9 +111,4 @@ public class Cheque {
     public void setJuros(float juros) {
         this.juros = juros;
     }
-    
-    
-    
-    
-    
 }
