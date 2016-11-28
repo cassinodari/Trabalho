@@ -7,7 +7,9 @@ import br.edu.com.uricer.dao.ClienteDAOImpl;
 import br.edu.com.uricer.model.Bordero;
 import br.edu.com.uricer.model.Cidade;
 import br.edu.com.uricer.model.Cliente;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +23,8 @@ import javax.swing.JOptionPane;
 public class TelaBorderos extends javax.swing.JFrame {
 
     BorderoDAOImpl borderoDAO = new BorderoDAOImpl();
-    
+    CidadeDAOImpl cidadeDAO = new CidadeDAOImpl();
+    ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
     
     
     /**
@@ -29,7 +32,7 @@ public class TelaBorderos extends javax.swing.JFrame {
      */
     public TelaBorderos() {
         initComponents();
-        carregaBordero();
+        carregaTabela();
     }
     /*private void inicializar() {
         try {
@@ -64,7 +67,7 @@ public class TelaBorderos extends javax.swing.JFrame {
         ed_nome = new javax.swing.JTextField();
         bt_pesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_bordero = new javax.swing.JTable();
+        tb_clientes = new javax.swing.JTable();
         pn_cadastro = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lb_id = new javax.swing.JLabel();
@@ -74,7 +77,6 @@ public class TelaBorderos extends javax.swing.JFrame {
         lb_porc = new javax.swing.JLabel();
         ed_porc = new javax.swing.JTextField();
         lb_porce = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         painel_cadastroo = new javax.swing.JPanel();
         lb_cpf = new javax.swing.JLabel();
         ed_cpf = new javax.swing.JTextField();
@@ -100,6 +102,8 @@ public class TelaBorderos extends javax.swing.JFrame {
         bt_cancelar1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_cadas_bordero = new javax.swing.JTable();
+        id_bordero = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -123,7 +127,7 @@ public class TelaBorderos extends javax.swing.JFrame {
             }
         });
 
-        tb_bordero.setModel(new javax.swing.table.DefaultTableModel(
+        tb_clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -134,24 +138,29 @@ public class TelaBorderos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tb_bordero.setRowHeight(30);
-        jScrollPane1.setViewportView(tb_bordero);
+        tb_clientes.setRowHeight(30);
+        tb_clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_clientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tb_clientes);
 
         javax.swing.GroupLayout pn_pesquisaLayout = new javax.swing.GroupLayout(pn_pesquisa);
         pn_pesquisa.setLayout(pn_pesquisaLayout);
         pn_pesquisaLayout.setHorizontalGroup(
             pn_pesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_pesquisaLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(25, 25, 25)
                 .addGroup(pn_pesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pn_pesquisaLayout.createSequentialGroup()
                         .addComponent(lb_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(26, 26, 26)
                         .addComponent(ed_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(bt_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         pn_pesquisaLayout.setVerticalGroup(
             pn_pesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,101 +254,121 @@ public class TelaBorderos extends javax.swing.JFrame {
         tb_cadas_bordero.setRowHeight(30);
         jScrollPane2.setViewportView(tb_cadas_bordero);
 
+        id_bordero.setEditable(false);
+        id_bordero.setEnabled(false);
+
         javax.swing.GroupLayout painel_cadastrooLayout = new javax.swing.GroupLayout(painel_cadastroo);
         painel_cadastroo.setLayout(painel_cadastrooLayout);
         painel_cadastrooLayout.setHorizontalGroup(
             painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painel_cadastrooLayout.createSequentialGroup()
                 .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_cadastrooLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painel_cadastrooLayout.createSequentialGroup()
                         .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ed_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_cpf))
-                        .addGap(18, 18, 18)
-                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ed_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_numerp))
-                        .addGap(20, 20, 20)
-                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb_donocheque)
-                            .addComponent(ed_donocheque, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ed_dataini, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_dataini))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb_datafin)
-                            .addComponent(ed_datafin, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(painel_cadastrooLayout.createSequentialGroup()
                                 .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ed_banco_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lb_banco, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lb_cpf)
+                                            .addComponent(ed_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lb_numerp)
+                                            .addComponent(ed_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lb_donocheque)
+                                            .addComponent(ed_donocheque, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ed_dataini, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lb_dataini)))
+                                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                                        .addComponent(bt_novo1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(bt_gravar1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(bt_excluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(bt_cancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ed_banco_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lb_banco, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ed_dias_bord, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ed_dias))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lb_valor)
+                                            .addComponent(ed_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lb_juro)
+                                            .addComponent(ed_juro, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 18, 18)
                                 .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ed_dias_bord, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ed_dias))
-                                .addGap(39, 39, 39)
-                                .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                                        .addComponent(lb_valor)
-                                        .addGap(58, 58, 58)
-                                        .addComponent(lb_juro))
-                                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                                        .addComponent(ed_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ed_juro, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                                .addComponent(bt_novo1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bt_gravar1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bt_excluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_cancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(209, Short.MAX_VALUE))
-            .addComponent(jScrollPane2)
+                                    .addComponent(lb_datafin)
+                                    .addComponent(ed_datafin, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(id_bordero, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         painel_cadastrooLayout.setVerticalGroup(
             painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painel_cadastrooLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_numerp)
-                    .addComponent(lb_dataini, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_donocheque)
-                    .addComponent(lb_datafin)
-                    .addComponent(lb_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(id_bordero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ed_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ed_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ed_dataini, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ed_donocheque, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ed_datafin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_banco, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ed_dias)
-                    .addComponent(lb_valor)
-                    .addComponent(lb_juro))
+                .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                        .addComponent(lb_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ed_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                        .addComponent(lb_numerp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ed_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                        .addComponent(lb_donocheque)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ed_donocheque, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                        .addComponent(lb_dataini)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ed_dataini, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                        .addComponent(lb_datafin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ed_datafin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ed_dias_bord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ed_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ed_juro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ed_banco_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_banco)
+                            .addComponent(ed_dias)
+                            .addComponent(lb_valor))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ed_dias_bord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ed_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ed_banco_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ed_juro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(painel_cadastrooLayout.createSequentialGroup()
+                        .addComponent(lb_juro)
+                        .addGap(36, 36, 36)))
+                .addGap(33, 33, 33)
                 .addGroup(painel_cadastrooLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_novo1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bt_gravar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bt_excluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bt_cancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -349,7 +378,7 @@ public class TelaBorderos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painel_cadastroo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_nome_bor, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,8 +394,7 @@ public class TelaBorderos extends javax.swing.JFrame {
                                 .addComponent(ed_porc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lb_porce, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addComponent(painel_cadastroo, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,18 +409,20 @@ public class TelaBorderos extends javax.swing.JFrame {
                     .addComponent(lb_porc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ed_porc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_porce, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(31, 31, 31)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painel_cadastroo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(painel_cadastroo, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pn_cadastroLayout = new javax.swing.GroupLayout(pn_cadastro);
         pn_cadastro.setLayout(pn_cadastroLayout);
         pn_cadastroLayout.setHorizontalGroup(
             pn_cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
+            .addGroup(pn_cadastroLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 844, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pn_cadastroLayout.setVerticalGroup(
             pn_cadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,20 +450,19 @@ public class TelaBorderos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 27, Short.MAX_VALUE))
+                .addGap(0, 130, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void limparEdits() {
-        ed_nome_bor.setText("");
         ed_cpf.setText("");
         ed_numero.setText("");
         ed_banco_cli.setText("");
@@ -445,10 +474,30 @@ public class TelaBorderos extends javax.swing.JFrame {
         ed_valor.setText("");        
     }
     
-    private void ed_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_nomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ed_nomeActionPerformed
-
+    private void desabilitaCampos() {
+        ed_cpf.setEnabled(false);
+        ed_numero.setEnabled(false);
+        ed_banco_cli.setEnabled(false);
+        ed_dias_bord.setEnabled(false);
+        ed_dataini.setEnabled(false);
+        ed_datafin.setEnabled(false);
+        ed_donocheque.setEnabled(false);
+        ed_juro.setEnabled(false);
+        ed_valor.setEnabled(false);        
+    }
+    
+    private void habilitaCampos() {
+        ed_cpf.setEnabled(true);
+        ed_numero.setEnabled(true);
+        ed_banco_cli.setEnabled(true);
+        ed_dias_bord.setEnabled(true);
+        ed_dataini.setEnabled(true);
+        ed_datafin.setEnabled(true);
+        ed_donocheque.setEnabled(true);
+        ed_juro.setEnabled(true);
+        ed_valor.setEnabled(true);        
+    }
+    
      private void tb_cadasborderoMouseClicked(java.awt.event.MouseEvent evt) {                                         
         if(evt.getClickCount() == 2) {
             //bordero = borderos.get(tb_cadas_bordero.getSelectedRow());
@@ -466,34 +515,77 @@ public class TelaBorderos extends javax.swing.JFrame {
             ed_juro.setEnabled(true);
         }
     } 
-    
+     
+     
+    private void carregaTabelaBorderos() {
+        try {
+            borderos = new ArrayList<Bordero>();
+            borderoTableModel = new BorderoTableModel(borderos);
+            tb_cadas_bordero.setModel(borderoTableModel);
+            borderos = borderoDAO.getBorderos(cliente);
+            borderoTableModel.setBorderos(borderos);
+            borderoTableModel.fireTableDataChanged();
+        } catch (Exception ex) {
+            Logger.getLogger(TelaBorderos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
      private void clienteParaEdit() {
-      //  ed_nome.setText(bordero.getId().toString());        
+        ed_id.setText(cliente.getId().toString());
+        ed_nome_bor.setText(cliente.getNome());
+        ed_porc.setText(Float.toString(cliente.getPorcentagem()));
     }
      
-     public void carregaBordero() {
-        borderos = new ArrayList<Bordero>();
-        borderoTableModel = new BorderoTableModel(borderos);
-        tb_bordero.setModel(borderoTableModel);
-        borderos = borderoDAO.getBorderos();
-        borderoTableModel.setBorderos(borderos);
-        borderoTableModel.fireTableDataChanged();
+     public void carregaTabela() {
+         try {
+            clientes = new ArrayList<Cliente>();
+            clienteTableModel = new ClienteTableModel(clientes);
+            tb_clientes.setModel(clienteTableModel);
+            clientes = clienteDAO.getClientes();
+            clienteTableModel.setClientes(clientes);
+            clienteTableModel.fireTableDataChanged();
+            desabilitaCampos();
+        } catch (Exception ex) {
+            Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void bt_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pesquisarActionPerformed
-
         try {
-            borderoDAO.gravar(bordero);
-            carregaBordero();
+            clientes = clienteDAO.findByNome(ed_nome.getText());
+            clienteTableModel.setClientes(clientes);
+            clienteTableModel.fireTableDataChanged();
         } catch (Exception ex) {
-            Logger.getLogger(TelaCidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bt_pesquisarActionPerformed
+
+    private void ed_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ed_nomeActionPerformed
+
+    private void tb_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_clientesMouseClicked
+        if(evt.getClickCount() == 2) {
+            cliente = clientes.get(tb_clientes.getSelectedRow());
+            clienteParaEdit();
+            carregaTabelaBorderos();
+            painelprincipal.setSelectedIndex(1);
+            ed_id.setEnabled(false);
+            ed_nome.setEnabled(true);
+            ed_porc.setEnabled(true);
+            limparEdits();
+            desabilitaCampos();
+            bt_novo1.setEnabled(true);
+            bt_gravar1.setEnabled(false);
+            bt_cancelar1.setEnabled(false);
+            bt_excluir1.setEnabled(false);
+        }
+    }//GEN-LAST:event_tb_clientesMouseClicked
 
     private void bt_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelar1ActionPerformed
         // TODO add your handling code here:
         limparEdits();
+        desabilitaCampos();
         bt_novo1.setEnabled(true);
         bt_gravar1.setEnabled(false);
         bt_cancelar1.setEnabled(false);
@@ -512,12 +604,22 @@ public class TelaBorderos extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_excluir1ActionPerformed
 
     private void bt_gravar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_gravar1ActionPerformed
- 
-        Bordero bordero;
-      //  bordero = new Bordero(ed_cpf.getText(), ed_numero.getText(),ed_dataini.getText(), ed_datafin.getText(), ed_banco.getText(), ed_dias.getText(),ed_juro.getText(),ed_valor.getText(),ed_p.getText(),ed_cpf.getText());
+        String id = id_bordero.getText();
+        int ide;
+        if ("".equals(id)) {
+            ide = 0;
+        } else {
+            ide = Integer.parseInt(id);
+        }
         try {
-        //   borderoDAO.gravar(bordero);
-            carregaBordero();
+            Bordero bordero;
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            java.sql.Date data_ini = new java.sql.Date(format.parse(ed_dataini.getText()).getTime());
+            java.sql.Date data_fim = new java.sql.Date(format.parse(ed_datafin.getText()).getTime());
+            bordero = new Bordero(ide, cliente, ed_cpf.getText(), Integer.parseInt(ed_numero.getText()), ed_donocheque.getText(), data_ini, data_fim, ed_banco.getText(), Integer.parseInt(ed_dias_bord.getText()), Float.parseFloat(ed_valor.getText()), Float.parseFloat(ed_juro.getText()));
+            borderoDAO.gravar(bordero);
+            carregaTabela();
+            carregaTabelaBorderos();
             JOptionPane.showMessageDialog(this, "Gravado com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             Logger.getLogger(TelaCidades.class.getName()).log(Level.SEVERE, null, ex);
@@ -532,6 +634,7 @@ public class TelaBorderos extends javax.swing.JFrame {
         bt_gravar1.setEnabled(true);
         bt_cancelar1.setEnabled(true);
         bt_excluir1.setEnabled(false);
+        habilitaCampos();
     }//GEN-LAST:event_bt_novo1ActionPerformed
 
     /**
@@ -591,6 +694,7 @@ public class TelaBorderos extends javax.swing.JFrame {
     private javax.swing.JTextField ed_numero;
     private javax.swing.JTextField ed_porc;
     private javax.swing.JTextField ed_valor;
+    private javax.swing.JTextField id_bordero;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -613,10 +717,13 @@ public class TelaBorderos extends javax.swing.JFrame {
     private javax.swing.JTabbedPane painelprincipal;
     private javax.swing.JPanel pn_cadastro;
     private javax.swing.JPanel pn_pesquisa;
-    private javax.swing.JTable tb_bordero;
     private javax.swing.JTable tb_cadas_bordero;
+    private javax.swing.JTable tb_clientes;
     // End of variables declaration//GEN-END:variables
     private Bordero bordero;
+    private Cliente cliente;
     private List<Bordero> borderos;
     private BorderoTableModel borderoTableModel;
+    private List<Cliente> clientes;
+    private ClienteTableModel clienteTableModel;
 }

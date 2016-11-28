@@ -29,7 +29,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" pref="869" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,7 +37,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" pref="480" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="130" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,18 +85,18 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="807" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="809" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="lb_nome" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Component id="ed_nome" min="-2" pref="247" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="bt_pesquisar" min="-2" pref="136" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -142,7 +142,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tb_bordero">
+                    <Component class="javax.swing.JTable" name="tb_clientes">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -154,6 +154,9 @@
                         </Property>
                         <Property name="rowHeight" type="int" value="30"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_clientesMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -171,7 +174,10 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel2" alignment="0" pref="864" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jPanel2" min="-2" pref="844" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -198,7 +204,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="painel_cadastroo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lb_nome_bor" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
@@ -218,9 +224,8 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Component id="jSeparator1" alignment="0" min="-2" pref="532" max="-2" attributes="0"/>
+                                  <Component id="painel_cadastroo" alignment="0" min="-2" pref="823" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="70" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -239,11 +244,11 @@
                                   <Component id="ed_porc" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="lb_porce" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="painel_cadastroo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="41" max="32767" attributes="0"/>
+                              <Component id="painel_cadastroo" min="-2" pref="646" max="-2" attributes="0"/>
+                              <EmptySpace pref="16" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -278,8 +283,6 @@
                         <Property name="text" type="java.lang.String" value="%"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JSeparator" name="jSeparator1">
-                    </Component>
                     <Container class="javax.swing.JPanel" name="painel_cadastroo">
 
                       <Layout>
@@ -287,118 +290,144 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="ed_cpf" min="-2" pref="103" max="-2" attributes="0"/>
-                                              <Component id="lb_cpf" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="ed_numero" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                                              <Component id="lb_numerp" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lb_donocheque" min="-2" max="-2" attributes="0"/>
-                                              <Component id="ed_donocheque" min="-2" pref="182" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="ed_dataini" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
-                                              <Component id="lb_dataini" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lb_datafin" min="-2" max="-2" attributes="0"/>
-                                              <Component id="ed_datafin" min="-2" pref="79" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane2" min="-2" pref="822" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="ed_banco_cli" min="-2" pref="133" max="-2" attributes="0"/>
-                                                      <Component id="lb_banco" min="-2" pref="43" max="-2" attributes="0"/>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="lb_cpf" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="ed_cpf" min="-2" pref="133" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="lb_numerp" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="ed_numero" min="-2" pref="111" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="lb_donocheque" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="ed_donocheque" min="-2" pref="182" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="ed_dataini" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                                              <Component id="lb_dataini" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="bt_novo1" min="-2" pref="117" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                                          <Component id="bt_gravar1" min="-2" pref="117" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="bt_excluir1" min="-2" pref="117" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="bt_cancelar1" min="-2" pref="118" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="ed_banco_cli" min="-2" pref="133" max="-2" attributes="0"/>
+                                                              <Component id="lb_banco" min="-2" pref="43" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="ed_dias_bord" min="-2" pref="60" max="-2" attributes="0"/>
+                                                              <Component id="ed_dias" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="lb_valor" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="ed_valor" min="-2" pref="118" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="lb_juro" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="ed_juro" min="-2" pref="115" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
                                                   </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="ed_dias_bord" min="-2" pref="55" max="-2" attributes="0"/>
-                                                      <Component id="ed_dias" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="lb_valor" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                                          <Component id="lb_juro" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="ed_valor" min="-2" pref="69" max="-2" attributes="0"/>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Component id="ed_juro" min="-2" pref="57" max="-2" attributes="0"/>
-                                                      </Group>
+                                                      <Component id="lb_datafin" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="ed_datafin" min="-2" pref="79" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="bt_novo1" min="-2" pref="117" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="bt_gravar1" min="-2" pref="117" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="bt_excluir1" min="-2" pref="117" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="id_bordero" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="bt_cancelar1" min="-2" pref="118" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="209" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane2" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <Component id="id_bordero" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lb_numerp" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lb_dataini" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Component id="lb_donocheque" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lb_datafin" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lb_cpf" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lb_cpf" min="-2" pref="28" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="ed_cpf" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lb_numerp" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="ed_numero" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lb_donocheque" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="ed_donocheque" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lb_dataini" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="ed_dataini" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lb_datafin" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="ed_datafin" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="ed_cpf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="ed_numero" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="ed_dataini" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="ed_donocheque" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="ed_datafin" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="lb_banco" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="ed_dias" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lb_valor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="ed_dias_bord" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                              <Component id="ed_valor" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                              <Component id="ed_banco_cli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                              <Component id="ed_juro" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lb_juro" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lb_banco" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                      <Component id="ed_dias" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lb_valor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lb_juro" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="ed_dias_bord" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="ed_valor" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="ed_juro" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="ed_banco_cli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="bt_novo1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                       <Component id="bt_gravar1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                       <Component id="bt_excluir1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                       <Component id="bt_cancelar1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -533,8 +562,16 @@
                             </Component>
                           </SubComponents>
                         </Container>
+                        <Component class="javax.swing.JTextField" name="id_bordero">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
+                        </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JSeparator" name="jSeparator1">
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>

@@ -33,7 +33,7 @@ public class ClienteTableModel extends AbstractTableModel {
             case 0: return cliente.getId();
             case 1: return cliente.getNome();
             case 2: return cliente.getCpf();
-            case 3: return cliente.getBairro();
+            case 3: return cliente.getTelefone();
             default:
                 throw new AssertionError();
         }

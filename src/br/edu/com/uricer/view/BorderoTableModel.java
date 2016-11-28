@@ -25,17 +25,22 @@ public class BorderoTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 9;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Bordero cliente = borderos.get(rowIndex);
+        Bordero bordero = borderos.get(rowIndex);
         switch (columnIndex) {
-            case 0:
-                return cliente.getId();
-            //        case 2: return cliente.getCpf();
-            //        case 3: return cliente.getBairro();
+            case 0: return bordero.getCpf();
+            case 1: return bordero.getNum_cheque();
+            case 2: return bordero.getDono_cheque();
+            case 3: return bordero.getData_ini();
+            case 4: return bordero.getData_fin();
+            case 5: return bordero.getBanco();
+            case 6: return bordero.getDias();
+            case 7: return bordero.getValor();
+            case 8: return bordero.getJuros();
             default:
                 throw new AssertionError();
         }
@@ -43,14 +48,15 @@ public class BorderoTableModel extends AbstractTableModel {
 
     public String getColumnName(int column) {
         switch (column) {
-            case 0:
-                return "Id";
-            case 1:
-                return "Nome";
-            case 2:
-                return "CPF";
-            case 3:
-                return "Telefone";
+            case 0: return "CPF";
+            case 1: return "Número";
+            case 2: return "Nome";
+            case 3: return "DT Inicial";
+            case 4: return "DT Final";
+            case 5: return "Banco";
+            case 6: return "Dias";
+            case 7: return "Valor";
+            case 8: return "Juros";
             default:
                 throw new AssertionError();
         }

@@ -108,6 +108,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_bordero">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\cassi\Desktop\Sistema de Border&#xf4; de cheques\Bordero\images\cheque-2-icon.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Bordero"/>
           </Properties>
           <Events>
@@ -116,11 +119,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_sair">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\cassi\Desktop\Sistema de Border&#xf4; de cheques\Bordero\images\logout256_24927.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_sairMousePressed"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_sairActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

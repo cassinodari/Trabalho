@@ -623,7 +623,6 @@ public class TelaClientes extends javax.swing.JFrame {
         ed_bairro.setText(cliente.getBairro());
         ed_ender.setText(cliente.getEndereco());
         ed_porc.setText(Float.toString(cliente.getPorcentagem()));
-        System.out.println(cliente.getId_cidade().getDescricao());
         cb_cidade_cli.getModel().setSelectedItem(cliente.getId_cidade().getDescricao());
     }
     /**

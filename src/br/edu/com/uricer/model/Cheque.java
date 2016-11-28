@@ -13,19 +13,19 @@ public class Cheque {
     private String dono_cheque;
     private Date data_ini;
     private Date data_fin;
-    private int id_banco;
+    private int banco;
     private int dias;
     private float valor;
     private float juros;
 
-    public Cheque(int id, String cpf, int num_cheque, String dono_cheque, Date data_ini, Date data_fin, int id_banco, int dias, float valor, float juros) {
+    public Cheque(int id, String cpf, int num_cheque, String dono_cheque, Date data_ini, Date data_fin, int banco, int dias, float valor, float juros) {
         this.id = id;
         this.cpf = cpf;
         this.num_cheque = num_cheque;
         this.dono_cheque = dono_cheque;
         this.data_ini = data_ini;
         this.data_fin = data_fin;
-        this.id_banco = id_banco;
+        this.banco = banco;
         this.dias = dias;
         this.valor = valor;
         this.juros = juros;
@@ -79,12 +79,12 @@ public class Cheque {
         this.data_fin = data_fin;
     }
 
-    public int getId_banco() {
-        return id_banco;
+    public int getBanco() {
+        return banco;
     }
 
-    public void setId_banco(int id_banco) {
-        this.id_banco = id_banco;
+    public void setBanco(int banco) {
+        this.banco = banco;
     }
 
     public int getDias() {

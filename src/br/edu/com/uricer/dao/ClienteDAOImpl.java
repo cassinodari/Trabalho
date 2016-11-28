@@ -116,6 +116,37 @@ public class ClienteDAOImpl implements ClienteDAO {
         return cidade;
     }
 
+    public Cliente getClienteById(Integer id) {
+        // Abre uma conexao com o banco de dados
+        this.conn = DataBase.getConnection();
+
+        String sql = "SELECT * FROM CLIENTES WHERE ID = "+id+";";
+        Cliente cliente = new Cliente();
+        // Executa SQL
+        try(PreparedStatement stm = conn.prepareStatement(sql)) {
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()) {
+                cliente.setId(rs.getInt("id"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setBairro(rs.getString("bairro"));
+                cliente.setEndereco(rs.getString("endereco"));
+                cliente.setPorcentagem(Float.parseFloat(rs.getString("porcentagem")));
+                cliente.setCep(rs.getString("cep"));
+                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setId_cidade(getCidadeById(rs.getInt("id_cidade")));
+            }
+            stm.close();
+            this.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CidadeDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cliente;
+    }
+    
+    
     @Override
     public List<Cliente> getClientes() {
         // Abre uma conexao com o banco de dados
