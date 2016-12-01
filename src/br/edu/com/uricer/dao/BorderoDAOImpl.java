@@ -3,7 +3,6 @@ package br.edu.com.uricer.dao;
 import br.edu.com.uricer.model.Bordero;
 import br.edu.com.uricer.model.Cidade;
 import br.edu.com.uricer.model.Cliente;
-import br.edu.com.uricer.model.Uf;
 import br.edu.com.uricer.util.DataBase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

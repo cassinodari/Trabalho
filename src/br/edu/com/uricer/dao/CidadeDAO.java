@@ -16,7 +16,7 @@ public interface CidadeDAO {
     /**
      * Método para armazenar um objeto no banco de dados. será utilizado para
      * operaçoes de insercao e alteracao de dados do objeto. se o ID do objeto
-     * está null, fará uma inclusão, caso hover id, fará uma alteração
+     * está null, fará uma inclusão, caso houver id, fará uma alteração
      *
      * @param objeto objeto Instância do objeto a ser inserido
      * @return Instancia atualizada do objeto após sincronizado com o banco de

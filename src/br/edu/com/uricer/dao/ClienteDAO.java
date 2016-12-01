@@ -2,7 +2,6 @@ package br.edu.com.uricer.dao;
 
 import br.edu.com.uricer.model.Cidade;
 import br.edu.com.uricer.model.Cliente;
-import br.edu.com.uricer.model.Uf;
 import java.util.List;
 
 /**

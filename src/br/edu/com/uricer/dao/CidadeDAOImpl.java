@@ -1,19 +1,16 @@
 package br.edu.com.uricer.dao;
 
 import br.edu.com.uricer.model.Cidade;
-import br.edu.com.uricer.model.Pessoa;
 import br.edu.com.uricer.model.Uf;
 import br.edu.com.uricer.util.DataBase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.Alert;
 
 /**
  *

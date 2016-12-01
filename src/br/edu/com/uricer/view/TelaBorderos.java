@@ -1,19 +1,15 @@
 package br.edu.com.uricer.view;
 
-import br.edu.com.uricer.dao.BorderoDAO;
 import br.edu.com.uricer.dao.BorderoDAOImpl;
 import br.edu.com.uricer.dao.CidadeDAOImpl;
 import br.edu.com.uricer.dao.ClienteDAOImpl;
 import br.edu.com.uricer.model.Bordero;
-import br.edu.com.uricer.model.Cidade;
 import br.edu.com.uricer.model.Cliente;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -442,7 +438,7 @@ public class TelaBorderos extends javax.swing.JFrame {
         ed_cpf.setText("");
         ed_numero.setText("");
         ed_banco_cli.setText("");
-        ed_dias.setText("");
+        ed_dias_bord.setText("");
         ed_dataini.setText("");
         ed_datafin.setText("");
         ed_donocheque.setText("");
@@ -553,7 +549,6 @@ public class TelaBorderos extends javax.swing.JFrame {
     }//GEN-LAST:event_tb_clientesMouseClicked
 
     private void bt_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelar1ActionPerformed
-        // TODO add your handling code here:
         limparEdits();
         desabilitaCampos();
         bt_novo1.setEnabled(true);
@@ -606,10 +601,6 @@ public class TelaBorderos extends javax.swing.JFrame {
         bt_excluir1.setEnabled(false);
         habilitaCampos();
     }//GEN-LAST:event_bt_novo1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
