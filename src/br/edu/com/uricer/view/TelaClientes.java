@@ -4,14 +4,11 @@ import br.edu.com.uricer.dao.CidadeDAOImpl;
 import br.edu.com.uricer.dao.ClienteDAOImpl;
 import br.edu.com.uricer.model.Cidade;
 import br.edu.com.uricer.model.Cliente;
-import br.edu.com.uricer.util.DataBase;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -72,8 +69,7 @@ public class TelaClientes extends javax.swing.JFrame {
         ed_cep.setText("");
         ed_ender.setText("");
         ed_porc.setText("");        
-    }
-    
+    }   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,12 +123,6 @@ public class TelaClientes extends javax.swing.JFrame {
         painelprincipal.setPreferredSize(new java.awt.Dimension(890, 541));
 
         lb_nome.setText("Nome:");
-
-        ed_nome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ed_nomeActionPerformed(evt);
-            }
-        });
 
         bt_pesquisa.setIcon(new javax.swing.ImageIcon("C:\\Users\\cassi\\Desktop\\Sistema de Borderô de cheques\\Bordero\\images\\pesquisar.png")); // NOI18N
         bt_pesquisa.setText("Pesquisa");
@@ -420,7 +410,6 @@ public class TelaClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_novo_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novo_cliActionPerformed
-        // TODO add your handling code here:
         limparEdits();
         ed_nome_cli.grabFocus();
         ed_nome_cli.setEnabled(true);
@@ -478,7 +467,6 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_gravar_cliActionPerformed
 
     private void bt_excluir_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluir_cliActionPerformed
-        // TODO add your handling code here:
         int resultado = JOptionPane.showConfirmDialog(this, "Confirma exclusão", "Confirmação", JOptionPane.YES_NO_CANCEL_OPTION);
         if(resultado == 0) {
             try {
@@ -508,7 +496,6 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_excluir_cliActionPerformed
 
     private void bt_cancelar_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelar_cliActionPerformed
-        // TODO add your handling code here:
         limparEdits();
         ed_nome_cli.grabFocus();
         bt_novo_cli.setEnabled(true);
@@ -557,10 +544,6 @@ public class TelaClientes extends javax.swing.JFrame {
             cb_cidade_cli.setEnabled(true);
         }
     }//GEN-LAST:event_tb_clientesMouseClicked
-
-    private void ed_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_nomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ed_nomeActionPerformed
     
     private void clienteParaEdit() {
         ed_id_cli.setText(cliente.getId().toString());

@@ -1,20 +1,14 @@
 package br.edu.com.uricer.view;
 
-import br.edu.com.uricer.dao.CidadeDAO;
 import br.edu.com.uricer.dao.CidadeDAOImpl;
-import br.edu.com.uricer.dao.PessoaDAO;
 import br.edu.com.uricer.model.Cidade;
-import br.edu.com.uricer.model.Pessoa;
 import br.edu.com.uricer.model.Uf;
-import br.edu.com.uricer.util.DataBase;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -279,7 +273,6 @@ public class TelaCidades extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_excluirActionPerformed
 
     private void bt_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelarActionPerformed
-        // TODO add your handling code here:
         limparEdits();
         bt_novo.setEnabled(true);
         bt_gravar.setEnabled(false);
@@ -290,8 +283,6 @@ public class TelaCidades extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_cancelarActionPerformed
 
     private void bt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novoActionPerformed
-        // TODO add your handling code here:
-        //Cidade = new cidade();
         limparEdits();
         tf_descricao.grabFocus();
         tf_descricao.setEnabled(true);
@@ -313,8 +304,6 @@ public class TelaCidades extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_pesquisarActionPerformed
 
     private void tb_cidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_cidadesMouseClicked
-                                    
-        // TODO add your handling code here:
         if(evt.getClickCount() == 2) {
             int cid = cidades.get(tb_cidades.getSelectedRow()).getId();
             try {
@@ -323,7 +312,6 @@ public class TelaCidades extends javax.swing.JFrame {
                 Logger.getLogger(TelaCidades.class.getName()).log(Level.SEVERE, null, ex);
             }
             cidadeParaEdit();
-            //painelPrincipal.setSelectedIndex(1);
             tf_descricao.setEnabled(true);
             bt_novo.setEnabled(false);
             bt_gravar.setEnabled(true);
