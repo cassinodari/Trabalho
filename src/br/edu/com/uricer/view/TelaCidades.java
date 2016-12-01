@@ -391,7 +391,6 @@ public class TelaCidades extends javax.swing.JFrame {
     private javax.swing.JTextField tf_pesquisar;
     // End of variables declaration//GEN-END:variables
     private Cidade cidade;
-    //private CidadeDAOImpl cidadeDAO;
     private List<Cidade> cidades;
     private CidadeTableModel cidadeTableModel;
     private List<Uf> ufs;

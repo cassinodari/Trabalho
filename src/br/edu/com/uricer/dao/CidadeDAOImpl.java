@@ -54,8 +54,8 @@ public class CidadeDAOImpl implements CidadeDAO {
 
             conn.commit();
         } catch (Exception ex) {
-            System.out.println("Erro ao tentar excluir: " + ex.getMessage());
-           // conn.rollback();
+            //System.out.println("Erro ao tentar excluir: " + ex.getMessage());
+           //conn.rollback();
         }
     }
 

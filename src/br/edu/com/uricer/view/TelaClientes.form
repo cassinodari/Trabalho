@@ -173,8 +173,8 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="210" max="32767" attributes="0"/>
+                          <Component id="jPanel2" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -196,76 +196,65 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lb_end_cli" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lb_cep_cli" min="-2" pref="49" max="-2" attributes="0"/>
+                                  <Component id="lb_porce_cli" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lb_bair_cli" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
+                                  <Component id="lb_cid_cli" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lb_email_cli" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lb_id_cli" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lb_nome_cli" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lb_bair_cli" min="-2" pref="49" max="-2" attributes="0"/>
-                                          <Component id="lb_cid_cli" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lb_end_cli" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lb_cep_cli" min="-2" pref="49" max="-2" attributes="0"/>
-                                          <Component id="lb_porce_cli" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="ed_id_cli" min="-2" pref="82" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="cb_cidade_cli" max="32767" attributes="0"/>
-                                                  <Component id="ed_ender" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="ed_bairro" alignment="0" max="32767" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="ed_nome_cli" min="-2" pref="136" max="-2" attributes="0"/>
-                                                          <Component id="ed_email" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="lb_telef_cli" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="lb_cpf_cli" min="-2" pref="34" max="-2" attributes="0"/>
-                                                      </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="ed_nome_cli" min="-2" pref="136" max="-2" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <Component id="lb_cpf_cli" min="-2" pref="34" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                                      <Component id="ed_cpf" min="-2" pref="136" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="ed_cep" min="-2" pref="136" max="-2" attributes="0"/>
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="ed_porc" min="-2" pref="37" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="ed_email" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
+                                                          <Component id="ed_id_cli" min="-2" pref="82" max="-2" attributes="0"/>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <Component id="ed_porc" min="-2" pref="43" max="-2" attributes="0"/>
+                                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
-                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      <EmptySpace pref="73" max="32767" attributes="0"/>
+                                                      <Component id="lb_telef_cli" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="ed_telef" min="-2" pref="136" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="ed_cpf" pref="136" max="32767" attributes="0"/>
-                                                          <Component id="ed_telef" pref="136" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="bt_cancelar_cli" max="32767" attributes="0"/>
-                                                          <Component id="bt_novo_cli" max="32767" attributes="0"/>
-                                                          <Component id="bt_excluir_cli" max="32767" attributes="0"/>
-                                                          <Component id="bt_gravar_cli" min="-2" pref="105" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                                  </Group>
+                                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="ed_bairro" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="ed_cep" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
+                                                  <Component id="cb_cidade_cli" alignment="0" pref="287" max="32767" attributes="0"/>
                                               </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="bt_cancelar_cli" max="32767" attributes="0"/>
+                                          <Component id="bt_novo_cli" max="32767" attributes="0"/>
+                                          <Component id="bt_excluir_cli" max="32767" attributes="0"/>
+                                          <Component id="bt_gravar_cli" min="-2" pref="105" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lb_nome_cli" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
-                                          <Component id="lb_id_cli" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lb_email_cli" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="ed_ender" min="-2" pref="287" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -274,68 +263,81 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lb_id_cli" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Component id="ed_id_cli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ed_id_cli" min="-2" pref="34" max="-2" attributes="0"/>
+                              <EmptySpace pref="385" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="lb_id_cli" min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="lb_nome_cli" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Component id="ed_cpf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                              <Component id="lb_cpf_cli" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="ed_nome_cli" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="ed_email" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="ed_telef" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="lb_email_cli" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                                              <Component id="lb_telef_cli" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="ed_cep" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="lb_cep_cli" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lb_cid_cli" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Component id="cb_cidade_cli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      </Group>
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                              <Component id="lb_end_cli" min="-2" pref="24" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="lb_porce_cli" min="-2" pref="22" max="-2" attributes="0"/>
+                                          <Component id="ed_nome_cli" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="lb_cpf_cli" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                              <Component id="ed_cpf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                           </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="ed_email" min="-2" pref="30" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="ed_telef" min="-2" pref="28" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                                  <Component id="lb_telef_cli" min="-2" pref="28" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="ed_bairro" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                                  <Component id="lb_bair_cli" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                                  <Component id="lb_cep_cli" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                                  <Component id="ed_cep" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="ed_ender" min="-2" pref="30" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="lb_cid_cli" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="cb_cidade_cli" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="lb_end_cli" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                                  <Component id="ed_ender" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                              </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="lb_porce_cli" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                                   <Component id="ed_porc" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="lb_bair_cli" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                                  <Component id="ed_bairro" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lb_nome_cli" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                      <Component id="lb_email_cli" min="-2" pref="26" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="bt_novo_cli" min="-2" pref="35" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="bt_gravar_cli" min="-2" pref="33" max="-2" attributes="0"/>
@@ -343,8 +345,10 @@
                                       <Component id="bt_excluir_cli" min="-2" pref="36" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="bt_cancelar_cli" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
